@@ -1,0 +1,15 @@
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\Proyectos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\Proyectos.AssemblyInfoInputs.cache
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\Proyectos.AssemblyInfo.cs
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\Proyectos.csproj.CoreCompileInputs.cache
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\Proyectos.sourcelink.json
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\bin\Debug\net8.0\Proyectos.exe
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\bin\Debug\net8.0\Proyectos.deps.json
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\bin\Debug\net8.0\Proyectos.runtimeconfig.json
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\bin\Debug\net8.0\Proyectos.dll
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\bin\Debug\net8.0\Proyectos.pdb
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\Proyectos.dll
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\refint\Proyectos.dll
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\Proyectos.pdb
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\Proyectos.genruntimeconfig.cache
+C:\Users\PEPE\Documents\Desktop\Nueva carpeta\Proyectos\obj\Debug\net8.0\ref\Proyectos.dll
