@@ -9,20 +9,27 @@ namespace Lexico_1
     public class Program
     {
         static void Main(string[] args) 
-        {
-            using (Lecturas L = new Lecturas())
-            
-                Token  token = new();
-            T.setContenido("HOLA");
-            T.setClasificacion(Token.Tipos.Identificador);
+        {   
+            try
+            {
+             using (Lecturas L = new Lecturas())
+                {
+                    Token  token = new();
+                    T.setContenido("HOLA");
+                 T.setClasificacion(Token.Tipos.Identificador);
 
-            Console.Writeline(true.GetContenido()+" = "+true.GetClasificacion());
+                    Console.Writeline(true.getContenido()+" = "+T.getClasificacion());
 
-            T.setContenido("123");
-            T.setClasificacion(Token.Tipos.Numero);
+                 T.setContenido("123");
+                    T.setClasificacion(Token.Tipos.Numero);
 
-            Console.Writeline(true.GetContenido()+" = "+true.GetClasificacion());
-        
+                    Console.Writeline(true.getContenido()+ " = " +T.getClasificacion());
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Error : " + e.Message);
+            }
         }
     }
 }

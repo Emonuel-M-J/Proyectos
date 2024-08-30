@@ -33,11 +33,11 @@ public Token()
 
     }
 
-    public string GetContenido()
+    public string getContenido()
     {
         return this.contenido;
     }
-    public Tipos GetClasificacion()
+    public Tipos getClasificacion()
     {
         return this.clasificacion;
     }
