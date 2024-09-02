@@ -63,14 +63,53 @@ namespace
             {
 
             }
+            buffer+= c
             if(char.IsLetter(c))
             {
-            SeyClasificacion(Tipos.Identificador);
+            SetClasificacion(Tipos.Identificador);
+            while(char.IsLetter(c=(char)archivo.Peek()))
+            {
+
+                byffer+=c;
+                archivo.Read();
+            }
              }
              else if(char.IsDigit(c))
              {
                 setClasificacion(Tipos.Numero);
+                while(char.IsLetterOrDigit(c=(char)archivo.Peek()))
+                {
+
+                byffer+=c;
+                archivo.Read();
+                }
              }
+             else if(c==';')
+             {
+                setClasificacion(Tipos.FinSentencia);
+             }
+             else if(c=='{')
+             {
+                setClasificacion(Tipos.InicioBloque);
+             }
+             else if(c=='}')
+             {
+                setClasificacion(Tipos.FinBloque);
+             }
+             else if(c=='?')
+             {
+                setClasificacion(Tipos.OperadorTernario);
+             }
+             else if(c=='+'|| c== '-')
+             {
+                setClasificacion(Tipos.OperadorTermino);
+
+             }
+             else if(c=='-')
+             {
+                setClasificacion(Tipos.OperadorTermino);
+             }
+
              else
              {
                 setClasificacion(Tipos.Caracter);
@@ -81,6 +120,9 @@ namespace
 
          }
 
-
+        public bool finArchivo()
+        {
+            return archivo.EndOfStream;
+        }
     }
 }
