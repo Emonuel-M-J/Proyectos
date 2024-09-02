@@ -12,7 +12,11 @@ namespace Léxico_1
     {
         public enum Tipos
     {
-        Identificador,Numero,Caracter
+        Identificador,Numero,Caracter,FiSentencia,
+
+        InicioBloque, FinBloque,OperadorTernario
+        OperadorTermino
+        //llave abierta, llave cerrada
     }
         int clasificacion;
         string contenido;

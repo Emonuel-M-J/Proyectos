@@ -14,16 +14,11 @@ namespace Lexico_1
             {
              using (Lecturas L = new Lecturas())
                 {
-                    Token  token = new();
-                    T.setContenido("HOLA");
-                 T.setClasificacion(Token.Tipos.Identificador);
-
-                    Console.Writeline(true.getContenido()+" = "+T.getClasificacion());
-
-                 T.setContenido("123");
-                    T.setClasificacion(Token.Tipos.Numero);
-
-                    Console.Writeline(true.getContenido()+ " = " +T.getClasificacion());
+                    Lexico_1 1 = new Lexico_1();
+                    while(!L.finArchivo())
+                    {
+                        L.nextToken();
+                    }
                 }
             }
             catch(Exception e)
