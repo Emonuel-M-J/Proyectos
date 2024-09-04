@@ -5,121 +5,180 @@ using System.Threading.Tasks;
 using System.IO;
 
 /*
-    Requerimiento 1= Sobrecargar el constructor Lexico para quereciba 
-            como argument0 el nombre del archivo a compilar
-    Requerimiento 2: Tener un contador de lineas.
+    Requerimiento 1: Sobrecargar el constructor Lexico para que reciba como
+                     argumento el nombre del archvo a compilar
+    Requerimiento 2: Tener un contador de lineas 
+    Requerimiento 3: Agregar operador relacional y Operador Lógico
+                    ==, >,>=,<,<=,<>,!=,<=,<        &&,||,!
 */
-namespace 
+namespace Léxico_1
 {
     public class Lexico : Token, IDisposable
     {
         StreamReader archivo;
         StreamWriter log;
-        StreamWriter asm;;
+        StreamWriter asm;
         int linea;
         public Lexico()
         {
             linea = 1;
-            log = new StreamWriter("prueba.log");
-            asm = new StreamWriter("prueba.asm");
+            log     = new StreamWriter("prueba.log");
+            asm     = new StreamWriter("prueba.asm");
             log.AutoFlush=true;
             asm.AutoFlush=true;
-            if(File.Exists("prueba.cpp"))
+            if (File.Exists("prueba.cpp"))
             {
-                archivo  = new StreamReader("prueba.cpp");
+                archivo = new StreamReader("prueba.cpp");
             }
             else
             {
-                throw new Error("El archivo prueba.cpp no exite", log);
-
+                throw new Error("El archivo prueba.cpp no existe",log);
             }
-            
-
         }
-        /*public Lexico(string nombre)
+        /*
+        public Lexico(string nombre)
         {
             
-
                 Si nombre = suma.cpp
                 LOG = suma.log
                 ASM = suma.asm
                 Y validar la extension del nombre del archivo
-
-            
         }
         */
         public void Dispose()
         {
-            archivo.close();
-            log.close();
-            asm.close();
-          
-         }
-         public void nextToken()
-         {
+            archivo.Close();
+            log.Close();
+            asm.Close();
+        }
+        public void nextToken()
+        {
             char c;
-            string buffer= "";
-            while(char.IsWhiteSpace(c = (char)archivo.Read()))
-            {
+            string buffer = "";
 
-            }
-            buffer+= c
-            if(char.IsLetter(c))
+            while (char.IsWhiteSpace(c = (char)archivo.Read()))
             {
-            SetClasificacion(Tipos.Identificador);
-            while(char.IsLetter(c=(char)archivo.Peek()))
-            {
-
-                byffer+=c;
-                archivo.Read();
             }
-             }
-             else if(char.IsDigit(c))
-             {
-                setClasificacion(Tipos.Numero);
-                while(char.IsLetterOrDigit(c=(char)archivo.Peek()))
+            buffer+=c;
+            if (char.IsLetter(c))
+            {
+                setClasificacion(Tipos.Identificador);
+                while (char.IsLetterOrDigit(c=(char)archivo.Peek()))
                 {
-
-                byffer+=c;
-                archivo.Read();
+                    buffer+=c;
+                    archivo.Read();
                 }
-             }
-             else if(c==';')
-             {
+            }
+            else if (char.IsDigit(c))
+            {
+                setClasificacion(Tipos.Numero);
+                while (char.IsDigit(c=(char)archivo.Peek()))
+                {
+                    buffer+=c;
+                    archivo.Read();
+                }
+            }
+            else if (c=='=')
+            {
+                setClasificacion(Tipos.asignacion);
+            }
+            else if (c==';')
+            {
                 setClasificacion(Tipos.FinSentencia);
-             }
-             else if(c=='{')
-             {
+            }
+            else if (c=='{')
+            {
                 setClasificacion(Tipos.InicioBloque);
-             }
-             else if(c=='}')
-             {
+            }
+            else if (c=='}')
+            {
                 setClasificacion(Tipos.FinBloque);
-             }
-             else if(c=='?')
-             {
+            }
+            else if (c=='?' || c==':')
+            {
                 setClasificacion(Tipos.OperadorTernario);
-             }
-             else if(c=='+'|| c== '-')
-             {
+            }
+            else if (c=='+')
+            {
                 setClasificacion(Tipos.OperadorTermino);
+                if((c=(char)archivo.Peek()) =='+' || c=='=' )
+                {
+                    setClasificacion(Tipos.IncrementoTermino);
+                    buffer+=c;
+                    archivo.Read();
+                    
 
-             }
-             else if(c=='-')
-             {
+                }
+            }
+            else if (c=='-')
+            {
                 setClasificacion(Tipos.OperadorTermino);
-             }
+                if((c=(char)archivo.Peek()) =='-' || c=='=' )
+                {
+                    setClasificacion(Tipos.IncrementoTermino);
+                    buffer+=c;
+                    archivo.Read();
+                    
 
-             else
-             {
+                }
+                else if(c=='>')
+                {
+                    setClasificacion(Tipos.Puntero);
+                    buffer+=c;
+                    archivo.Read();
+                }
+            }
+            else if (c=='*' || c=='%' || c== '/')
+            {
+                setClasificacion(Tipos.OperadorFactor);
+            }
+
+            else if (c== '*')
+            {
+                setClasificacion(Tipos.IncrementoFactor);
+                if((c=(char)archivo.Peek()) =='*' || c=='=' )
+                {
+                    setClasificacion(Tipos.IncrementoFactor);
+                    buffer+=c;
+                    archivo.Read();
+                    
+
+                }
+            }
+            else if (c=='%')
+            {
+                setClasificacion(Tipos.IncrementoFactor);
+                if((c=(char)archivo.Peek()) =='%' || c=='=' )
+                {
+                    setClasificacion(Tipos.IncrementoFactor);
+                    buffer+=c;
+                    archivo.Read();
+                    
+
+                }
+            }
+            else if (c=='/')
+            {
+                setClasificacion(Tipos.IncrementoFactor);
+                if((c=(char)archivo.Peek()) =='/' || c=='=' )
+                {
+                    setClasificacion(Tipos.IncrementoFactor);
+                    buffer+=c;
+                    archivo.Read();
+                    
+
+                }
+            }
+            
+            
+            else
+            {
                 setClasificacion(Tipos.Caracter);
-             }
-             setContenido(buffer);
-            log.Writeline(()+ " = " + getClasificacion());
-
-
-         }
-
+            }
+            
+            setContenido(buffer);
+            log.WriteLine(getContenido() + " = " + getClasificacion());            
+        } 
         public bool finArchivo()
         {
             return archivo.EndOfStream;

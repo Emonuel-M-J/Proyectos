@@ -1,1 +1,18 @@
-Error: El rchivo prueba.cpp no existe
+{ = InicioBloque
+s26 = Identificador
+= = Caracter
+x25 = Identificador
+= = Caracter
+35 = Numero
++ = OperadorTermino
+- = OperadorTermino
+45 = Numero
+* = OperadorFactor
+100 = Numero
+/ = OperadorFactor
+3 = Numero
+= = Caracter
+100 = Numero
+; = FinSentencia
+} = FinBloque
+￿ = Caracter

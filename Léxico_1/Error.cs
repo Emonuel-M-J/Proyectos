@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Lexico_1
+namespace Léxico_1
 {
     public class Error : Exception
     {

@@ -1,30 +1,54 @@
 ﻿
-nusing System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lexico_1
+namespace Léxico_1
 {
-    public class Program
+    public class Programs
     {
-        static void Main(string[] args) 
-        {   
+        static void Main(string[] args)
+        {
+
+
+                StreamReader file= new("./test.cpp");
+                StreamWriter logger =new("./new.log");
+                file.Close();
+                logger.Close();
+
+
+
+            
             try
             {
-             using (Lecturas L = new Lecturas())
+                using (Lexico l  = new ())
                 {
-                    Lexico_1 1 = new Lexico_1();
-                    while(!L.finArchivo())
+                    while (!l.finArchivo())
                     {
-                        L.nextToken();
+                        l.nextToken();
                     }
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Console.WriteLine("Error : " + e.Message);
+                Console.WriteLine("Error: " + e.Message);
             }
+
+
         }
+
+
+
     }
 }
+
+
+/*while(!file.EndOfStream){Mientras el archivo no termne de ller }
+c= (char)file.Read Es para leer todo el archivo y cada linea 
+file.Peek(); se queda en la primera palabra 
+
+
+
+dda*/
+
