@@ -1,18 +1,35 @@
-{ = InicioBloque
-s26 = Identificador
-= = Caracter
-x25 = Identificador
-= = Caracter
-35 = Numero
-+ = OperadorTermino
+== = OperadorRelacional
+Numero de lineas: 23
+< = OperadorRelacional
+Numero de lineas: 23
+> = OperadorRelacional
+Numero de lineas: 23
+>= = OperadorRelacional
+Numero de lineas: 23
+<= = OperadorRelacional
+Numero de lineas: 23
+< = OperadorRelacional
+Numero de lineas: 23
+> = OperadorRelacional
+Numero de lineas: 23
+|| = OperadorLogico
+Numero de lineas: 23
+&& = OperadorLogico
+Numero de lineas: 23
+!= = OperadorRelacional
+Numero de lineas: 23
+! = OperadorLogico
+Numero de lineas: 23
+-> = Puntero
+Numero de lineas: 23
+< = OperadorRelacional
+Numero de lineas: 23
 - = OperadorTermino
-45 = Numero
-* = OperadorFactor
-100 = Numero
-/ = OperadorFactor
-3 = Numero
-= = Caracter
-100 = Numero
-; = FinSentencia
-} = FinBloque
-￿ = Caracter
+Numero de lineas: 23
+$5 = Moneda
+Numero de lineas: 23
+$ = Caracter
+Numero de lineas: 23
+$ = Caracter
+Numero de lineas: 23
+Numero de lineas: 23

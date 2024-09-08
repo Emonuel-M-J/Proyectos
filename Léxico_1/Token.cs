@@ -11,7 +11,7 @@ namespace Léxico_1
         public enum Tipos
         {
             Identificador,Numero,Caracter,FinSentencia,
-            InicioBloque, FinBloque, OperadorTernario,OperadorTermino, OperadorFactor, IncrementoTermino, IncrementoFactor, Puntero, asignacion
+            InicioBloque, FinBloque, OperadorTernario,OperadorTermino, OperadorFactor, IncrementoTermino, IncrementoFactor, Puntero, Asignacion, Moneda, OperadorRelacional,OperadorLogico 
         }
         private string contenido;
         private Tipos clasificacion;

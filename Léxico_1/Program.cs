@@ -12,8 +12,8 @@ namespace Léxico_1
         {
 
 
-                StreamReader file= new("./test.cpp");
-                StreamWriter logger =new("./new.log");
+                StreamReader file= new("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.cpp");
+                StreamWriter logger =new("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.log");
                 file.Close();
                 logger.Close();
 
@@ -24,22 +24,22 @@ namespace Léxico_1
             {
                 using (Lexico l  = new ())
                 {
+
+                   // new Lexico("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.cpp");
                     while (!l.finArchivo())
                     {
+                        
+                        
                         l.nextToken();
                     }
+                    
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error: " + e.Message);
             }
-
-
         }
-
-
-
     }
 }
 
