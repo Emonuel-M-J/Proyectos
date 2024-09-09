@@ -1,4 +1,3 @@
-Numero de lineas: 23
 == = OperadorRelacional
 < = OperadorRelacional
 > = OperadorRelacional
@@ -16,3 +15,4 @@ Numero de lineas: 23
 $5 = Moneda
 $ = Caracter
 $ = Caracter
+Numero de lineas: 24

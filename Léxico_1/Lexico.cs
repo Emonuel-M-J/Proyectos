@@ -23,6 +23,7 @@ namespace Léxico_1
         
         public Lexico()
         {
+
             
             log     = new StreamWriter("prueba.log");
             asm     = new StreamWriter("prueba.asm");
@@ -48,7 +49,7 @@ namespace Léxico_1
                 
                 if(File.Exists(nombre))
                 {
-                     archivo = new StreamReader("prueba");
+                     archivo = new StreamReader("nombre");
                      
                 }
                 else
@@ -60,6 +61,7 @@ namespace Léxico_1
                 { 
                     throw new Error("El archivo no es correcto", log);
                 }
+                
         }
         
        /* public Lexico(string nombre)
@@ -76,14 +78,20 @@ namespace Léxico_1
         
         public void Dispose()
         {
+            //Contador de lineas 
+            int contadorlinea = File.ReadAllLines("prueba.cpp").Length;
+            contadorlinea = contadorlinea +1;
+            log.WriteLine("Numero de lineas: " + contadorlinea   );
             archivo.Close();
             log.Close();
             asm.Close();
+            
         }
         public void nextToken()
         {
             char c;
             string buffer = "";
+            
             
             
 
@@ -253,6 +261,15 @@ namespace Léxico_1
                     archivo.Read();
                     
                 }
+                else if(c== '<'){
+                if((c=(char)archivo.Peek()) == '>')
+                {
+                    setClasificacion(Tipos.OperadorRelacional);
+                    buffer += c;
+                    archivo.Read();
+                    
+                }
+            }
             }
             else if(c=='!'){
                 setClasificacion(Tipos.OperadorLogico);
@@ -264,17 +281,11 @@ namespace Léxico_1
                     
                 }
             }
-            else if(c== '<'){
-                if((c=(char)archivo.Peek()) == '>')
-                {
-                    setClasificacion(Tipos.OperadorRelacional);
-                    buffer += c;
-                    archivo.Read();
-                    
-                }
-            }
+            
             else if (c == '&')
+            
             {
+                setClasificacion(Tipos.Caracter);
                 if((c=(char)archivo.Peek()) == '&')
                 {
                     setClasificacion(Tipos.OperadorLogico);
@@ -307,24 +318,24 @@ namespace Léxico_1
                      
                  }
 
+                 
+
          
         
                    
         } 
+        
         public bool finArchivo()
         {
              
             return archivo.EndOfStream;
         }
         
-        public int contadorlineas()
-        { int contadorLinea=0;
+        
+        
 
-                 //Contador de lineas 
-            int length = File.ReadAllLines("prueba.cpp").Length;
-            contadorLinea = length;
-            log.WriteLine("Numero de lineas: " + contadorLinea); 
-            return contadorLinea + 1 ;
-        }
+                  
+            
+        
     }
 }
