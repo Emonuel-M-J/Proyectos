@@ -24,6 +24,7 @@ namespace Léxico_1
             {
                 using (Lexico l  = new ())
                 {
+                    l.contadorlineas();
 
                    // new Lexico("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.cpp");
                     while (!l.finArchivo())
@@ -31,7 +32,9 @@ namespace Léxico_1
                         
                         
                         l.nextToken();
+                        
                     }
+
                     
                 }
             }

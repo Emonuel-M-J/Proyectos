@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 /*  
     Requerimiento 1: Sobrecargar el constructor Lexico para que reciba como
@@ -83,8 +84,7 @@ namespace Léxico_1
         {
             char c;
             string buffer = "";
-            int contadorLinea=0;
-
+            
             
 
             while (char.IsWhiteSpace(c = (char)archivo.Read()))
@@ -307,16 +307,24 @@ namespace Léxico_1
                      
                  }
 
-                 //Contador de lineas 
-            int length = File.ReadAllLines("prueba.cpp").Length;
-            contadorLinea = length;
-            log.WriteLine("Numero de lineas: " +contadorLinea); 
+         
+        
                    
         } 
         public bool finArchivo()
         {
              
             return archivo.EndOfStream;
+        }
+        
+        public int contadorlineas()
+        { int contadorLinea=0;
+
+                 //Contador de lineas 
+            int length = File.ReadAllLines("prueba.cpp").Length;
+            contadorLinea = length;
+            log.WriteLine("Numero de lineas: " + contadorLinea); 
+            return contadorLinea + 1 ;
         }
     }
 }

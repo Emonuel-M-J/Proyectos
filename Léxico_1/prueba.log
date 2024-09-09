@@ -1,35 +1,18 @@
+Numero de lineas: 23
 == = OperadorRelacional
-Numero de lineas: 23
 < = OperadorRelacional
-Numero de lineas: 23
 > = OperadorRelacional
-Numero de lineas: 23
 >= = OperadorRelacional
-Numero de lineas: 23
 <= = OperadorRelacional
-Numero de lineas: 23
 < = OperadorRelacional
-Numero de lineas: 23
 > = OperadorRelacional
-Numero de lineas: 23
 || = OperadorLogico
-Numero de lineas: 23
 && = OperadorLogico
-Numero de lineas: 23
 != = OperadorRelacional
-Numero de lineas: 23
 ! = OperadorLogico
-Numero de lineas: 23
 -> = Puntero
-Numero de lineas: 23
 < = OperadorRelacional
-Numero de lineas: 23
 - = OperadorTermino
-Numero de lineas: 23
 $5 = Moneda
-Numero de lineas: 23
 $ = Caracter
-Numero de lineas: 23
 $ = Caracter
-Numero de lineas: 23
-Numero de lineas: 23
