@@ -1,18 +1,15 @@
+{ = InicioBloque
+&& = OperadorLogico
+& = Caracter
+|| = OperadorLogico
+| = OperadorLogico
+! = OperadorLogico
+!= = OperadorRelacional
 == = OperadorRelacional
 < = OperadorRelacional
-> = OperadorRelacional
->= = OperadorRelacional
-<= = OperadorRelacional
 < = OperadorRelacional
+<> = OperadorRelacional
 > = OperadorRelacional
-|| = OperadorLogico
-&& = OperadorLogico
-!= = OperadorRelacional
-! = OperadorLogico
--> = Puntero
-< = OperadorRelacional
-- = OperadorTermino
-$5 = Moneda
-$ = Caracter
-$ = Caracter
-Numero de lineas: 24
+> = OperadorRelacional
+} = FinBloque
+Numero de lineas: 17

@@ -6,27 +6,24 @@ using System.Threading.Tasks;
 
 namespace Léxico_1
 {
-    public class Programs
+    public class Program
     {
         static void Main(string[] args)
         {
 
 
-                StreamReader file= new("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.cpp");
-                StreamWriter logger =new("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.log");
-                file.Close();
-                logger.Close();
+                
 
 
 
             
             try
             {
-                using (Lexico l  = new ())
+                using (Lexico l  = new Lexico())
                 {
                     
 
-                   // new Lexico("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.cpp");
+                   new Lexico("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.cpp");
                     while (!l.finArchivo())
                     {
                         

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
+
 
 /*  
     Requerimiento 1: Sobrecargar el constructor Lexico para que reciba como
@@ -25,7 +25,7 @@ namespace Léxico_1
         {
 
             
-            log     = new StreamWriter("prueba.log");
+            log     = new StreamWriter("./prueba.log");
             asm     = new StreamWriter("prueba.asm");
             log.AutoFlush=true;
             asm.AutoFlush=true;
@@ -49,7 +49,7 @@ namespace Léxico_1
                 
                 if(File.Exists(nombre))
                 {
-                     archivo = new StreamReader("nombre");
+                     archivo = new StreamReader(nombre);
                      
                 }
                 else
@@ -251,7 +251,7 @@ namespace Léxico_1
                     
                 }
             }
-                 else if (c=='<' || c == '>' )
+            else if (c=='<' )
             {
                   setClasificacion(Tipos.OperadorRelacional);
                   if((c=(char)archivo.Peek()) == '=')
@@ -259,18 +259,31 @@ namespace Léxico_1
                     setClasificacion(Tipos.OperadorRelacional);
                     buffer += c;
                     archivo.Read();
+
                     
                 }
-                else if(c== '<'){
-                if((c=(char)archivo.Peek()) == '>')
+                else if((c=(char)archivo.Peek()) == '>')
                 {
                     setClasificacion(Tipos.OperadorRelacional);
                     buffer += c;
                     archivo.Read();
+                        
+                 }
+                
+                
+            }else if ( c == '>' )
+            {
+                  setClasificacion(Tipos.OperadorRelacional);
+                  if((c=(char)archivo.Peek()) == '=')
+                {
+                    setClasificacion(Tipos.OperadorRelacional);
+                    buffer += c;
+                    archivo.Read();
+
                     
                 }
             }
-            }
+            
             else if(c=='!'){
                 setClasificacion(Tipos.OperadorLogico);
                 if((c=(char)archivo.Peek()) == '=')

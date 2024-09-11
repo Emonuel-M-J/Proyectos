@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Léxico_1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4aadc4be458c8aa60bb324c76bcf8c2a903baa68")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+daf718361e36f4f73c6cc74bcea3400bef8104c5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Léxico_1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Léxico_1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
