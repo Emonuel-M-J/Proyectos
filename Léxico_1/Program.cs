@@ -19,11 +19,9 @@ namespace Léxico_1
             
             try
             {
-                using (Lexico l  = new Lexico())
+                using (Lexico l  = new Lexico("prueba.cpp"))
                 {
                     
-
-                   new Lexico("C:/Users/PEPE/Documents/Lenguagesautomat1/Léxico_1/prueba.cpp");
                     while (!l.finArchivo())
                     {
                         

@@ -2,7 +2,7 @@
 && = OperadorLogico
 & = Caracter
 || = OperadorLogico
-| = OperadorLogico
+| = Caracter
 ! = OperadorLogico
 != = OperadorRelacional
 == = OperadorRelacional
@@ -13,5 +13,8 @@
 > = OperadorRelacional
 * = OperadorFactor
 * = OperadorFactor
+%= = IncrementoFactor
+/= = IncrementoFactor
++ = OperadorTermino
 } = FinBloque
-Numero de lineas: 25
+Numero de lineas: 34

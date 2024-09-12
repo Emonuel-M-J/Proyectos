@@ -25,7 +25,7 @@ namespace Léxico_1
         {
 
             
-            log     = new StreamWriter("./prueba.log");
+            log     = new StreamWriter("prueba.log");
             asm     = new StreamWriter("prueba.asm");
             log.AutoFlush=true;
             asm.AutoFlush=true;
@@ -56,8 +56,7 @@ namespace Léxico_1
                 {
                     throw new Error("El archivo prueba .cpp no existe", log);
                 }
-            }
-                else 
+            }else 
                 { 
                     throw new Error("El archivo no es correcto", log);
                 }
@@ -92,13 +91,10 @@ namespace Léxico_1
             char c;
             string buffer = "";
             
-            
-            
-
             while (char.IsWhiteSpace(c = (char)archivo.Read()))
             {
             }
-            buffer+=c;
+                 buffer+=c;
             
             
 
@@ -123,13 +119,12 @@ namespace Léxico_1
             else if (c=='=')
             {
                 setClasificacion(Tipos.Asignacion);
-                if((c=(char)archivo.Peek()) =='=' || c=='=' )
+                if((c=(char)archivo.Peek()) =='=' )
                 {
                     setClasificacion(Tipos.OperadorRelacional);
                     buffer+=c;
                     archivo.Read();
                     
-
                 }
             }
             
@@ -145,7 +140,7 @@ namespace Léxico_1
             {
                 setClasificacion(Tipos.FinBloque);
             }
-            else if (c=='?' || c==':')
+            else if (c=='?' )
             {
                 setClasificacion(Tipos.OperadorTernario);
             }
@@ -172,33 +167,30 @@ namespace Léxico_1
                     
 
                 }
-                else if(c=='>')
+                else if((c=(char)archivo.Peek()) =='>')
                 {
                     setClasificacion(Tipos.Puntero);
                     buffer+=c;
                     archivo.Read();
                 }
             }
-            else if (c=='*' || c=='%' || c== '/')
+            else if ( c=='*'|| c=='%' || c== '/')
             {
                 setClasificacion(Tipos.OperadorFactor);
-            }
-
-            else if (c== '*')
-            {
-                setClasificacion(Tipos.IncrementoFactor);
-                if((c=(char)archivo.Peek()) =='*' || c=='=' )
+                if((c=(char)archivo.Peek()) =='=' )
                 {
                     setClasificacion(Tipos.IncrementoFactor);
                     buffer+=c;
                     archivo.Read();
-                    
 
                 }
             }
+
+            
+
             else if (c=='%')
             {
-                setClasificacion(Tipos.IncrementoFactor);
+                setClasificacion(Tipos.OperadorFactor);
                 if((c=(char)archivo.Peek()) =='%' || c=='=' )
                 {
                     setClasificacion(Tipos.IncrementoFactor);
@@ -208,10 +200,9 @@ namespace Léxico_1
 
                 }
             }
-             
-            else if (c=='/')
+             else if (c=='/')
             {
-                setClasificacion(Tipos.IncrementoFactor);
+                setClasificacion(Tipos.OperadorFactor);
                 if((c=(char)archivo.Peek()) =='/' || c=='=' )
                 {
                     setClasificacion(Tipos.IncrementoFactor);
@@ -221,8 +212,6 @@ namespace Léxico_1
 
                 }
             }
-            
-        
             else if (c =='$')
             {
                 setClasificacion(Tipos.Caracter);
@@ -253,8 +242,8 @@ namespace Léxico_1
             }
             else if (c=='<' )
             {
-                  setClasificacion(Tipos.OperadorRelacional);
-                  if((c=(char)archivo.Peek()) == '=')
+                setClasificacion(Tipos.OperadorRelacional);
+                if((c=(char)archivo.Peek()) == '=')
                 {
                     setClasificacion(Tipos.OperadorRelacional);
                     buffer += c;
@@ -268,10 +257,11 @@ namespace Léxico_1
                     buffer += c;
                     archivo.Read();
                         
-                 }
+                }
                 
                 
-            }else if ( c == '>' )
+            }
+            else if ( c == '>' )
             {
                   setClasificacion(Tipos.OperadorRelacional);
                   if((c=(char)archivo.Peek()) == '=')
@@ -283,8 +273,8 @@ namespace Léxico_1
                     
                 }
             }
-            
-            else if(c=='!'){
+            else if(c=='!')
+            {
                 setClasificacion(Tipos.OperadorLogico);
                 if((c=(char)archivo.Peek()) == '=')
                 {
@@ -294,9 +284,7 @@ namespace Léxico_1
                     
                 }
             }
-            
             else if (c == '&')
-            
             {
                 setClasificacion(Tipos.Caracter);
                 if((c=(char)archivo.Peek()) == '&')
@@ -309,6 +297,7 @@ namespace Léxico_1
             }
             else if (c == '|')
             {
+                setClasificacion(Tipos.Caracter);
                 if((c=(char)archivo.Peek()) == '|')
                 {
                     setClasificacion(Tipos.OperadorLogico);
@@ -317,38 +306,22 @@ namespace Léxico_1
                     
                 }
             }
-
-            
-                 else
-                {
-                    setClasificacion(Tipos.Caracter);
-                 }
-                 if(!finArchivo())
-                 {
-                     setContenido(buffer);
-                    log.WriteLine(getContenido() + " = " + getClasificacion()); 
+            else
+            {
+                setClasificacion(Tipos.Caracter);
+            }
+            if(!finArchivo())
+            {
+                setContenido(buffer);
+                log.WriteLine(getContenido() + " = " + getClasificacion()); 
                   
                      
-                 }
-
-                 
-
-         
-        
-                   
+            }                   
         } 
-        
         public bool finArchivo()
-        {
-             
+        {   
             return archivo.EndOfStream;
         }
-        
-        
-        
-
-                  
-            
         
     }
 }
