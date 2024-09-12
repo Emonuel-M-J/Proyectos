@@ -42,14 +42,15 @@ namespace Léxico_1
         {   
             log = new StreamWriter(nombre + ".log");
             log.AutoFlush=true;
-            if(System.IO.Path.GetExtension(nombre).ToLower() == ".cpp" )
+            if(Path.GetExtension(nombre) == ".cpp" )
             {
-                asm  = new StreamWriter(nombre + ".asm"); 
-                asm.AutoFlush=true;
+                
                 
                 if(File.Exists(nombre))
                 {
-                     archivo = new StreamReader(nombre);
+                    asm  = new StreamWriter(nombre + ".asm"); 
+                    asm.AutoFlush=true;
+                    archivo = new StreamReader(nombre);
                      
                 }
                 else
