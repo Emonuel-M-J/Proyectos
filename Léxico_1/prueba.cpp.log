@@ -16,5 +16,4 @@
 %= = IncrementoFactor
 /= = IncrementoFactor
 + = OperadorTermino
-} = FinBloque
-Numero de lineas: 35
+Numero de lineas: 27

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 
 /*  
@@ -19,7 +20,7 @@ namespace Léxico_1
         StreamReader archivo;
         StreamWriter log;
         StreamWriter asm;
-        
+        int linea;
         
         public Lexico()
         {
@@ -94,6 +95,11 @@ namespace Léxico_1
             
             while (char.IsWhiteSpace(c = (char)archivo.Read()))
             {
+                if(c == '\n')
+                {
+            
+                    linea++;
+                }
             }
                  buffer+=c;
             
@@ -112,6 +118,16 @@ namespace Léxico_1
             {
                 setClasificacion(Tipos.Numero);
                 while (char.IsDigit(c=(char)archivo.Peek()))
+                {
+                    buffer+=c;
+                    archivo.Read();
+                }
+                if(c =='.') //Parte fraccionaria
+                {
+                    buffer+=c;
+                    archivo.Read();
+                }
+                if(char.ToLower(c)=='e') // Parte exponencial
                 {
                     buffer+=c;
                     archivo.Read();
@@ -186,33 +202,7 @@ namespace Léxico_1
 
                 }
             }
-
-            
-
-            else if (c=='%')
-            {
-                setClasificacion(Tipos.OperadorFactor);
-                if((c=(char)archivo.Peek()) =='%' || c=='=' )
-                {
-                    setClasificacion(Tipos.IncrementoFactor);
-                    buffer+=c;
-                    archivo.Read();
-                    
-
-                }
-            }
-             else if (c=='/')
-            {
-                setClasificacion(Tipos.OperadorFactor);
-                if((c=(char)archivo.Peek()) =='/' || c=='=' )
-                {
-                    setClasificacion(Tipos.IncrementoFactor);
-                    buffer+=c;
-                    archivo.Read();
-                    
-
-                }
-            }
+             
             else if (c =='$')
             {
                 setClasificacion(Tipos.Caracter);
@@ -307,6 +297,21 @@ namespace Léxico_1
                     
                 }
             }
+            else if( c == '"')
+            {
+                if((c=(char)archivo.Peek()) == '"')
+                {
+                    setClasificacion(Tipos.Cadena);
+                }
+                else if()
+                {
+                    
+                }
+
+            }
+           
+           
+           
             else
             {
                 setClasificacion(Tipos.Caracter);
