@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Formats.Asn1;
 
 
 /*  
@@ -81,7 +82,6 @@ namespace Léxico_1
         {
             //Contador de lineas 
             int contadorlinea = File.ReadAllLines("prueba.cpp").Length;
-            contadorlinea = contadorlinea +1;
             log.WriteLine("Numero de lineas: " + contadorlinea   );
             archivo.Close();
             log.Close();
@@ -122,7 +122,7 @@ namespace Léxico_1
                     buffer+=c;
                     archivo.Read();
                 }
-                if(c =='.') //Parte fraccionaria
+                /*if(c =='.') //Parte fraccionaria
                 {
                     buffer+=c;
                     archivo.Read();
@@ -131,7 +131,7 @@ namespace Léxico_1
                 {
                     buffer+=c;
                     archivo.Read();
-                }
+                }*/
             }
             else if (c=='=')
             {
@@ -272,6 +272,7 @@ namespace Léxico_1
                     setClasificacion(Tipos.OperadorRelacional);
                     buffer += c;
                     archivo.Read();
+                
                     
                 }
             }
@@ -297,21 +298,64 @@ namespace Léxico_1
                     
                 }
             }
+            //Nuevos tokens proyecto unidad 2
             else if( c == '"')
             {
-                if((c=(char)archivo.Peek()) == '"')
-                {
-                    setClasificacion(Tipos.Cadena);
-                }
-                else if()
-                {
+                setClasificacion(Tipos.Cadena);
+                while((c=(char)archivo.Peek())  != '"')
+                {   
+                    buffer+=c;
+                    archivo.Read();
+
+                    if(finArchivo() )
+                    {   
+                        
+                        buffer+=c;
+                        archivo.Read();    
+                        throw new Error ("Se espera cierre de comillas",log,linea);
+  
+                    }
+                    
                     
                 }
+                 buffer+=c;
+                 archivo.Read();   
+                
+            }
+            else if(c =='\'')
+            {
+                setClasificacion(Tipos.Caracter);
+                 while((c=(char)archivo.Peek())  != '\'')
+                {   
+                    buffer+=c;
+                    archivo.Read();
+
+                    if(finArchivo() )
+                    {   
+                        
+                        buffer+=c;
+                        archivo.Read();    
+                        throw new Error ("Se espera cierre de una comilla",log,linea);
+  
+                    }
+                    
+                    
+                }
+                 buffer+=c;
+                 archivo.Read();   
+                
 
             }
-           
-           
-           
+            else if(c == '#')
+            {
+                setClasificacion(Tipos.Caracter);
+                while(char.IsDigit(c=(char)archivo.Peek()) )
+                {
+                    setClasificacion(Tipos.Caracter);
+                    buffer+=c;
+                    archivo.Read();
+                }
+            }
             else
             {
                 setClasificacion(Tipos.Caracter);

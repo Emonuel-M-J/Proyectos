@@ -1,19 +1,4 @@
 { = InicioBloque
-&& = OperadorLogico
-& = Caracter
-|| = OperadorLogico
-| = Caracter
-! = OperadorLogico
-!= = OperadorRelacional
-== = OperadorRelacional
-< = OperadorRelacional
-< = OperadorRelacional
-<> = OperadorRelacional
-> = OperadorRelacional
-> = OperadorRelacional
-* = OperadorFactor
-* = OperadorFactor
-%= = IncrementoFactor
-/= = IncrementoFactor
-+ = OperadorTermino
-Numero de lineas: 27
+"" = Cadena
+Error:Se espera cierre de comillasen la linea2
+Numero de lineas: 12

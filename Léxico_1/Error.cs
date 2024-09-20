@@ -13,7 +13,7 @@ namespace Léxico_1
             log.WriteLine("Error:" + message);
         }
 
-        public Error(string message, StreamWriter log, int linea) : base(message + ":"+ linea)
+        public Error(string message, StreamWriter log, int linea) : base(message + "En la linea"+ linea)
         {
             log.WriteLine("Error:" + message + "en la linea" + linea);
         }
