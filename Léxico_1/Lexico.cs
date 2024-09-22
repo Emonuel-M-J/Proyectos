@@ -122,16 +122,30 @@ namespace Léxico_1
                     buffer+=c;
                     archivo.Read();
                 }
-                /*if(c =='.') //Parte fraccionaria
+                if(c =='.') //Parte fraccionaria
                 {
                     buffer+=c;
                     archivo.Read();
+                    if(char.IsDigit(c=(char)archivo.Peek()))
+                    {
+                        buffer+=c;
+                        archivo.Read();
+                        setClasificacion(Tipos.Numero);
+                    }
+                    else 
+                    {
+                        throw new Error("Error léxico",log,linea);
+                    }
+
                 }
+                
+               
+                
                 if(char.ToLower(c)=='e') // Parte exponencial
                 {
                     buffer+=c;
                     archivo.Read();
-                }*/
+                }
             }
             else if (c=='=')
             {
@@ -322,7 +336,18 @@ namespace Léxico_1
                  archivo.Read();   
                 
             }
-            else if(c =='\'')
+            
+            else if(c == '#')
+            {
+                setClasificacion(Tipos.Caracter);
+                while(char.IsDigit(c=(char)archivo.Peek()) )
+                {
+                    setClasificacion(Tipos.Caracter);
+                    buffer+=c;
+                    archivo.Read();
+                }
+            }
+            else if (c == '\'')
             {
                 setClasificacion(Tipos.Caracter);
                  while((c=(char)archivo.Peek())  != '\'')
@@ -335,7 +360,7 @@ namespace Léxico_1
                         
                         buffer+=c;
                         archivo.Read();    
-                        throw new Error ("Se espera cierre de una comilla",log,linea);
+                        throw new Error ("Se espera cierre de una comilla, Error léxico",log,linea);
   
                     }
                     
@@ -345,16 +370,6 @@ namespace Léxico_1
                  archivo.Read();   
                 
 
-            }
-            else if(c == '#')
-            {
-                setClasificacion(Tipos.Caracter);
-                while(char.IsDigit(c=(char)archivo.Peek()) )
-                {
-                    setClasificacion(Tipos.Caracter);
-                    buffer+=c;
-                    archivo.Read();
-                }
             }
             else
             {
