@@ -1,9 +1,14 @@
-365 = Numero
-12 = Numero
-12.6 = Numero
-9 = Numero
-13e+21516216 = Numero
-12e-23365 = Numero
-15e+3 = Numero
-Error: Error léxico : en la linea9
-Numero de lineas: 15
+230 = Numero
+230.30 = Numero
+230e30 = Numero
+230e-30 = Numero
+230e+30 = Numero
+230.30e30 = Numero
+230.30e-30 = Numero
+230.30e+30 = Numero
+"hola mundo" = Cadena
+# = Caracter
+#64 = Caracter
+' = Caracter
+Error: Error léxico : en la linea: 13
+Numero de lineas: 19

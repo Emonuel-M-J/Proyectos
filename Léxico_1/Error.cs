@@ -15,7 +15,7 @@ namespace Léxico_1
 
         public Error(string message, StreamWriter log, int linea) : base(message + "En la linea: "+ linea)
         {
-            log.WriteLine("Error:" + message + "en la linea" + linea);
+            log.WriteLine("Error:" + message + "en la linea: " + linea);
         }
         
         

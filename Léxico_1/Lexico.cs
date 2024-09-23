@@ -115,9 +115,14 @@ namespace Léxico_1
                     archivo.Read();
                     if(char.IsDigit(c=(char)archivo.Peek()))
                     {
-                        buffer+=c;
-                        archivo.Read();
+                        // buffer+=c;
+                        // archivo.Read();
                         setClasificacion(Tipos.Numero);
+                        while(char.IsDigit(c=(char)archivo.Peek()))
+                        {
+                            buffer+=c;
+                            archivo.Read();
+                        }
 
                     }
                     else
@@ -131,7 +136,7 @@ namespace Léxico_1
                 {
                     buffer+=c;
                     archivo.Read();
-                    while((c=(char)archivo.Peek()) =='+' || c=='-')
+                    while((c=(char)archivo.Peek()) =='+' || c=='-'|| char.IsDigit(c))
                     {
                         buffer+=c;
                         archivo.Read();
@@ -362,14 +367,14 @@ namespace Léxico_1
                         throw new Error (" Error léxico : ",log,linea); 
                     }
 
-                    if(finArchivo() )
+                    /*if(finArchivo() )
                     {   
                         
                         buffer+=c;
                         archivo.Read();    
                         throw new Error (" Error léxico por falta de cierre de una comilla: ",log,linea);
   
-                    }   
+                    }  */ 
                 }
             }
             else
