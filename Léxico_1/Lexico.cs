@@ -21,7 +21,7 @@ namespace Léxico_1
         StreamReader archivo;
         StreamWriter log;
         StreamWriter asm;
-        int linea;
+        int linea=1;
         
         public Lexico()
         {
@@ -102,8 +102,6 @@ namespace Léxico_1
                 }
             }
                  buffer+=c;
-            
-            
 
             if (char.IsLetter(c))
             {
@@ -131,20 +129,40 @@ namespace Léxico_1
                         buffer+=c;
                         archivo.Read();
                         setClasificacion(Tipos.Numero);
+
                     }
-                    else 
+                    else
                     {
-                        throw new Error("Error léxico",log,linea);
+                        throw new Error("Error léxico: ",log,linea);
                     }
 
                 }
-                
-               
                 
                 if(char.ToLower(c)=='e') // Parte exponencial
                 {
                     buffer+=c;
                     archivo.Read();
+                    while((c=(char)archivo.Peek()) =='+' || c=='-')
+                    {
+                        buffer+=c;
+                        archivo.Read();
+                        if(char.IsDigit(c=(char)archivo.Peek()))
+                        {
+                            buffer+=c;
+                            archivo.Read();
+                            setClasificacion(Tipos.Numero);
+                            while(char.IsDigit(c=(char)archivo.Peek()))
+                            {
+                                buffer+=c;
+                                archivo.Read();
+                            }
+                        }   
+                        else
+                        {
+                            
+                            throw new Error("Error léxico: ",log, linea);
+                        }
+                    }
                 }
             }
             else if (c=='=')
@@ -234,7 +252,7 @@ namespace Léxico_1
 
                     //Nuevos tokens 
 
-                else if (c == '=')
+            else if (c == '=')
             {
                 setClasificacion(Tipos.Asignacion);
                 if((c=(char)archivo.Peek()) == '=')
@@ -313,7 +331,7 @@ namespace Léxico_1
                 }
             }
             //Nuevos tokens proyecto unidad 2
-            else if( c == '"')
+            else if( c == '"') 
             {
                 setClasificacion(Tipos.Cadena);
                 while((c=(char)archivo.Peek())  != '"')
@@ -323,13 +341,11 @@ namespace Léxico_1
 
                     if(finArchivo() )
                     {   
-                        
+
                         buffer+=c;
-                        archivo.Read();    
-                        throw new Error ("Se espera cierre de comillas",log,linea);
+                        throw new Error ("Se espera cierre de comillas: ",log,linea);
   
                     }
-                    
                     
                 }
                  buffer+=c;
@@ -360,15 +376,13 @@ namespace Léxico_1
                         
                         buffer+=c;
                         archivo.Read();    
-                        throw new Error ("Se espera cierre de una comilla, Error léxico",log,linea);
+                        throw new Error (" Error léxico por falta de cierre de una comilla: ",log,linea);
   
-                    }
-                    
+                    }   
                     
                 }
                  buffer+=c;
                  archivo.Read();   
-                
 
             }
             else

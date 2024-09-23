@@ -1,4 +1,8 @@
-"" = Cadena
-233.3 = Numero
-Error:Error léxicoen la linea3
-Numero de lineas: 13
+365 = Numero
+12 = Numero
+12.6 = Numero
+9 = Numero
+13e+21 = Numero
+12e-23 = Numero
+Error:Error léxico: en la linea7
+Numero de lineas: 14
