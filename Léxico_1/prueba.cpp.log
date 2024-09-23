@@ -2,7 +2,8 @@
 12 = Numero
 12.6 = Numero
 9 = Numero
-13e+21 = Numero
-12e-23 = Numero
-Error:Error léxico: en la linea7
-Numero de lineas: 14
+13e+21516216 = Numero
+12e-23365 = Numero
+15e+3 = Numero
+Error: Error léxico : en la linea9
+Numero de lineas: 15

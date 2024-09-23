@@ -59,26 +59,15 @@ namespace Léxico_1
                 {
                     throw new Error("El archivo prueba .cpp no existe", log);
                 }
-            }else 
-                { 
-                    throw new Error("El archivo no es correcto", log);
-                }
+            }
+            else 
+            { 
+                 throw new Error("El archivo no es correcto", log);
+            }
                 
         }
         
-       /* public Lexico(string nombre)
-        {
-            
-                if( nombre = suma.cpp)
-                {
-                    LOG = suma.log
-                    ASM = suma.asm
-                    //Y validar la extension del nombre del archivo
-
-                }
-        }*/
-        
-        public void Dispose()
+               public void Dispose()
         {
             //Contador de lineas 
             int contadorlinea = File.ReadAllLines("prueba.cpp").Length;
@@ -159,7 +148,6 @@ namespace Léxico_1
                         }   
                         else
                         {
-                            
                             throw new Error("Error léxico: ",log, linea);
                         }
                     }
@@ -201,8 +189,6 @@ namespace Léxico_1
                     setClasificacion(Tipos.IncrementoTermino);
                     buffer+=c;
                     archivo.Read();
-                    
-
                 }
             }
             else if (c=='-')
@@ -213,8 +199,6 @@ namespace Léxico_1
                     setClasificacion(Tipos.IncrementoTermino);
                     buffer+=c;
                     archivo.Read();
-                    
-
                 }
                 else if((c=(char)archivo.Peek()) =='>')
                 {
@@ -282,7 +266,6 @@ namespace Léxico_1
                         
                 }
                 
-                
             }
             else if ( c == '>' )
             {
@@ -292,7 +275,6 @@ namespace Léxico_1
                     setClasificacion(Tipos.OperadorRelacional);
                     buffer += c;
                     archivo.Read();
-
                     
                 }
             }
@@ -305,7 +287,6 @@ namespace Léxico_1
                     buffer += c;
                     archivo.Read();
                 
-                    
                 }
             }
             else if (c == '&')
@@ -370,6 +351,16 @@ namespace Léxico_1
                 {   
                     buffer+=c;
                     archivo.Read();
+                    
+                    if((c=(char)archivo.Peek())  == '\'')
+                    {
+                        buffer+=c;
+                        archivo.Read();
+                    }
+                    else
+                    {
+                        throw new Error (" Error léxico : ",log,linea); 
+                    }
 
                     if(finArchivo() )
                     {   
@@ -379,11 +370,7 @@ namespace Léxico_1
                         throw new Error (" Error léxico por falta de cierre de una comilla: ",log,linea);
   
                     }   
-                    
                 }
-                 buffer+=c;
-                 archivo.Read();   
-
             }
             else
             {
