@@ -9,6 +9,5 @@
 "hola mundo" = Cadena
 # = Caracter
 #64 = Caracter
-' = Caracter
-Error: Error léxico : en la linea: 13
+'@' = Caracter
 Numero de lineas: 19

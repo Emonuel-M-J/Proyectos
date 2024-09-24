@@ -325,17 +325,17 @@ namespace Léxico_1
                     buffer+=c;
                     archivo.Read();
 
-                    if(finArchivo() )
-                    {   
-
+                    if((c=(char)archivo.Peek())  == '"')
+                    {
                         buffer+=c;
-                        throw new Error ("Se espera cierre de comillas: ",log,linea);
-  
+                        archivo.Read();
+                        break;  
                     }
-                    
+                    else if(finArchivo())
+                    {
+                        throw new Error (" Error léxico : ",log,linea); 
+                    }   
                 }
-                 buffer+=c;
-                 archivo.Read();   
                 
             }
             
@@ -361,20 +361,12 @@ namespace Léxico_1
                     {
                         buffer+=c;
                         archivo.Read();
+                        break;  
                     }
-                    else
+                    else if(finArchivo())
                     {
                         throw new Error (" Error léxico : ",log,linea); 
                     }
-
-                    /*if(finArchivo() )
-                    {   
-                        
-                        buffer+=c;
-                        archivo.Read();    
-                        throw new Error (" Error léxico por falta de cierre de una comilla: ",log,linea);
-  
-                    }  */ 
                 }
             }
             else
