@@ -81,34 +81,99 @@ namespace Lexico_2
             asm.Close();
             
         }
-        private int automata(char c,int estado)
+        private int automata(int estado, char transicion)
         {
             int nuevoEstado=estado;
             switch(estado)
             {
                 case 0: 
-                    if(char.IsWhiteSpace(c))
+                    if(char.IsWhiteSpace(transicion))
                     {
                         nuevoEstado = 0;
                     }
-                    else if(char.IsLetter(c))
+                    else if(char.IsLetter(transicion))
                     {
                         nuevoEstado = 1;
                     }
-                    else if(char.IsDigit(c))
+                    else if(char.IsDigit(transicion))
                     {
                         nuevoEstado = 2;
 
                     }
-                    else
+                    else if( transicion == ';' )
                     {
                         nuevoEstado = 8;
                     }
+                    else if( transicion == '{' )
+                    {
+                        nuevoEstado = 9;
+                    }
+                    else if( transicion == '}' )
+                    {
+                        nuevoEstado = 10;
+                    }
+                    else if( transicion == '?' )
+                    {
+                        nuevoEstado = 11;
+                    }
+                    else if( transicion == '+' )
+                    {
+                        nuevoEstado = 12;
+                    }
+                    else if (transicion == '-' )
+                    {
+                        nuevoEstado = 14;
+                    }
+                    else if(transicion == '*' || transicion == '%')
+                    {
+                        nuevoEstado = 16;
+                    }
+                    else if(transicion == '&')
+                    {
+                        nuevoEstado = 18;
+                    }
+                    else if(transicion == '|')
+                    {
+                        nuevoEstado = 20;
+                    }
+                    else if(transicion == '!')
+                    {
+                        nuevoEstado = 21;
+                    }
+                    else if(transicion == '=')
+                    {
+                        nuevoEstado = 23;
+                    }
+                    else if(transicion == '>')
+                    {
+                        nuevoEstado = 25;
+                    }
+                    else if(transicion == '<')
+                    {
+                        nuevoEstado= 26;
+                    }
+                    else if(transicion == '"')
+                    {
+                        nuevoEstado = 27;
+                    }
+                    else if (transicion == '\'')
+                    {
+                        nuevoEstado = 29;
+                    }
+                    else if(transicion == '#')
+                    {
+                        nuevoEstado = 32;
+                    }
+                    else if(transicion == '|')
+                    {
+                        nuevoEstado = 34;
+                    }
                     break;
+                    
                     
                 case 1:
                     setClasificacion (Tipos.Identificador);
-                    if(!char.IsLetterOrDigit(c))
+                    if(!char.IsLetterOrDigit(transicion))
                     {
                         nuevoEstado = F;
                     }
@@ -117,15 +182,15 @@ namespace Lexico_2
                     break;
                 case 2:
                     setClasificacion (Tipos.Numero);
-                    if(char.IsDigit(c))
+                    if(char.IsDigit(transicion))
                     {
                         nuevoEstado = 2;
                     }
-                    else if (c == '.')
+                    else if (transicion == '.')
                     {
                         nuevoEstado = 3;
                     }
-                    else if (char.ToLower(c) == 'e')
+                    else if (char.ToLower(transicion) == 'e')
                     {
                         nuevoEstado = 5;
                     }
@@ -137,7 +202,7 @@ namespace Lexico_2
                     break;
                 
                 case 3:
-                    if(char.IsDigit(c))
+                    if(char.IsDigit(transicion))
                     {
                         nuevoEstado = 4;
                     }
@@ -147,11 +212,11 @@ namespace Lexico_2
                     }
                     break;
                 case 4:
-                    if(char.IsDigit(c))
+                    if(char.IsDigit(transicion))
                     {
                         nuevoEstado = 4;
                     }
-                     else if(char.ToLower(c)== 'e')
+                     else if(char.ToLower(transicion)== 'e')
                     {
                         nuevoEstado = 5;
                     }
@@ -161,11 +226,11 @@ namespace Lexico_2
                     }
                     break;
                 case 5:
-                    if (char.IsDigit(c))
+                    if (char.IsDigit(transicion))
                     {
                         nuevoEstado = 7;
                     }
-                    else if (c == '+' || c == '-')
+                    else if (transicion == '+' || transicion == '-')
                     {
                         nuevoEstado = 6;
                     }
@@ -176,7 +241,7 @@ namespace Lexico_2
                     break;
 
                 case 6:
-                     if(char.IsDigit(c))
+                     if(char.IsDigit(transicion))
                     {
                         nuevoEstado = 7;
                     }
@@ -186,7 +251,7 @@ namespace Lexico_2
                     }
                     break;
                 case 7:
-                    if(char.IsDigit(c))
+                    if(char.IsDigit(transicion))
                     {
                         nuevoEstado = 7;
                     }
@@ -195,10 +260,206 @@ namespace Lexico_2
                         nuevoEstado = F;
                     }
                     break;
+                    
                 case 8:
+                setClasificacion(Tipos.FinSentencia);
+                nuevoEstado = F;
+                break;
+                case 9:
+                setClasificacion(Tipos.InicioBloque);
+                nuevoEstado = F;
+                break;
+                case 10:
+                setClasificacion(Tipos.FinBloque);
+                nuevoEstado = F;
+                break;
+                case 11:
+                setClasificacion(Tipos.OperadorTernario);
+                nuevoEstado = F;
+                break;
+                case 12:
+                setClasificacion(Tipos.OperadorTermino);
+                nuevoEstado = F;
+                if(transicion == '+' || transicion =='=')
+                {
+                    nuevoEstado = 13;
+
+                }
+
+                break;
+                case 13:
+                setClasificacion(Tipos.IncrementoFactor);
+                nuevoEstado = F;
+                break;
+                case 14:
+                setClasificacion(Tipos.OperadorTermino);
+                nuevoEstado = F;
+                if(transicion == '-'|| transicion =='=')
+                {
+                    nuevoEstado=13;
+                }
+                else if(transicion == '>')
+                {
+                    nuevoEstado = 15;
+                }
+                break;
+                case 15:
+                setClasificacion(Tipos.Puntero);
+                nuevoEstado = F;
+                break;
+                case 16:
+                setClasificacion(Tipos.OperadorFactor);
+                nuevoEstado = F;
+                if(transicion== '=')
+                {
+                    nuevoEstado = 17;
+                }
+                break;
+                case 17:
+                setClasificacion(Tipos.IncrementoFactor);
+                nuevoEstado = F;
+                break;
+                case 18:
+                setClasificacion(Tipos.Caracter);
+                nuevoEstado = F;
+                if(transicion == '&')
+                {
+                    nuevoEstado = 19;
+                }
+                break;
+                case 19:
+                setClasificacion(Tipos.OperadorLogico);
+                nuevoEstado = F;
+                break;
+                case 20:
+                setClasificacion(Tipos.Caracter);
+                nuevoEstado = F;
+                if(transicion == '|')
+                {
+                    nuevoEstado = 19;
+                }
+                break;
+                case 21:
+                setClasificacion(Tipos.OperadorLogico);
+                nuevoEstado = F;
+                if(transicion == '=')
+                {
+                    nuevoEstado = 22;
+                }
+                break;
+                case 22:
+                setClasificacion(Tipos.OperadorRelacional);
+                nuevoEstado = F;
+                break;
+                case 23:
+                setClasificacion(Tipos.Asignacion);
+                nuevoEstado = F;
+                if(transicion == '=')
+                {
+                    nuevoEstado = 24;
+                }
+                break;
+                case 24:
+                setClasificacion(Tipos.OperadorRelacional);
+                nuevoEstado = F;
+                break;
+                case 25:
+                setClasificacion(Tipos.OperadorRelacional);
+                nuevoEstado = F;
+                if(transicion == '=')
+                {
+                    nuevoEstado = 24;
+                }
+                break;
+                case 26:
+                setClasificacion(Tipos.OperadorRelacional); 
+                nuevoEstado = F;
+                if(transicion == '>' || transicion == '=')
+                {
+                    nuevoEstado = 24;
+                }
+                break;
+                case 27:
+                setClasificacion(Tipos.Cadena);
+                if(transicion == '"')
+                {
+                    nuevoEstado = 28;
+                }
+                else
+                {
+                    nuevoEstado = E;
+                }
+                break;
+                case 28:
+                nuevoEstado = F;
+                break;
+                case 29:
+                setClasificacion(Tipos.Caracter);
+                nuevoEstado = 30;
+                break;
+                case 30:
+                if (transicion == '\'')
+                {
+                    nuevoEstado = 31;
+                }
+                else
+                {
+                    nuevoEstado = E;
+                }
+                break;
+                case 31:
+                nuevoEstado = F;
+                
+                break;
+                case 32:
+                setClasificacion(Tipos.Caracter);
+                nuevoEstado = F;
+                break;
+                case 33:
                     setClasificacion(Tipos.Caracter);
                     nuevoEstado = F;
                     break;
+                case 34:
+                setClasificacion(Tipos.OperadorFactor);
+                nuevoEstado = F;
+                if(transicion == '=')
+                {
+                    nuevoEstado = 17;
+                }
+                else if(transicion == '|')
+                {
+                    nuevoEstado = 35;
+                }
+                else if(transicion == '*')
+                {
+                    nuevoEstado = 36;
+                }
+                break;
+                case 35:
+                if(transicion == '\n')
+                {
+                nuevoEstado=0;
+                }
+                break;
+                case 36:
+                nuevoEstado=36;
+                if(transicion == '*')
+                {
+                nuevoEstado=37;
+                }
+                
+                break;
+                case 37:
+                nuevoEstado=36;
+                if(transicion == '*')
+                {
+                nuevoEstado=37;
+                } 
+                else if(transicion == '|')
+                {
+                    nuevoEstado=0;
+                }
+                break;
 
             }
             return nuevoEstado;
@@ -212,7 +473,7 @@ namespace Lexico_2
             while(estado >= 0)
             {
                 transicion = (char)archivo.Peek();
-                estado = automata(transicion,estado); 
+                estado = automata(estado,transicion); 
                 if(estado == E)
                 {
                     if(getClasificacion() == Tipos.Numero)
