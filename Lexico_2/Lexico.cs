@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Formats.Asn1;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Data;
 
 
 /*  
@@ -165,6 +166,10 @@ namespace Lexico_2
                         nuevoEstado = 32;
                     }
                     else if(transicion == '|')
+                    {
+                        nuevoEstado = 34;
+                    }
+                    else if(transicion == '/')
                     {
                         nuevoEstado = 34;
                     }
@@ -415,6 +420,10 @@ namespace Lexico_2
                 case 32:
                     setClasificacion(Tipos.Caracter);
                     nuevoEstado = F;
+                    if(char.IsDigit(transicion))
+                    {
+                        nuevoEstado = 32;
+                    }
                 break;
                 case 33:
                     setClasificacion(Tipos.Caracter);
@@ -427,7 +436,7 @@ namespace Lexico_2
                     {
                         nuevoEstado = 17;
                     }
-                    else if(transicion == '|')
+                    else if(transicion == '/')
                     {
                         nuevoEstado = 35;
                     }
@@ -450,7 +459,7 @@ namespace Lexico_2
                     }
                     else if(finArchivo())
                     {
-                        nuevoEstado=E;
+                        throw new Exception("Se esperaba cierre de comentario");
                     }
                     
                 break;
@@ -463,6 +472,10 @@ namespace Lexico_2
                     else if(transicion == '/')
                     {
                         nuevoEstado=0;
+                    }
+                    else if(finArchivo())
+                    {
+                        throw new Exception("Se esperaba cierre de comentario");
                     }
                 break;
 
@@ -485,6 +498,15 @@ namespace Lexico_2
                     {
                         throw new Error(" Lexico, se espera un digito", log, linea);
                     }
+                    else if(getClasificacion() == Tipos.Cadena)
+                    {
+                        throw new Error(" Lexico, se espera un cierre de comillas", log, linea);
+                    }
+                    else if(getClasificacion() == Tipos.Caracter)
+                    {
+                        throw new Error(" Lexico, se espera cierre de una comilla", log, linea);
+                    }
+                    
                 }
                 if(estado >= 0)
                 {

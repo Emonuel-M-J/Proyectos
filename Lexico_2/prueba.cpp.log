@@ -1,11 +1,42 @@
 { = InicioBloque
-hola = Identificador
-3 = Numero
-356e+21 = Numero
-256e25 = Numero
-256 = Numero
-399 = Numero
--> = Puntero
-"Hola" = Cadena
+230 = Numero
+// Numero entero230e-30 = Numero
+230e+30 = Numero
+230.30e30 = Numero
+230.30e-30 = Numero
+230.30e+30 = Numero
+// Numero en formato cientifico"hola mundo" = Cadena
+#64 = Caracter
+- = OperadorTermino
 '@' = Caracter
-} = FinBloque
+/*
+        Hola mundo
+        ITQ
+    *radio = Identificador
+; = FinSentencia
+< = OperadorRelacional
+<> = OperadorRelacional
+> = OperadorRelacional
+! = OperadorLogico
+!= = OperadorRelacional
+== = OperadorRelacional
+= = Asignacion
+; = FinSentencia
+&& = OperadorLogico
+& = Caracter
+|| = OperadorLogico
+| = Caracter
+++ = IncrementoFactor
++ = OperadorTermino
+-- = IncrementoFactor
+- = OperadorTermino
++= = IncrementoFactor
+-= = IncrementoFactor
+* = OperadorFactor
+*= = IncrementoFactor
+/= = IncrementoFactor
+% = OperadorFactor
+%= = IncrementoFactor
+"" = Cadena
+Error: Lexico, se espera un cierre de comillasen la linea: 17
+Numero de lineas: 17
