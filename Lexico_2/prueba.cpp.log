@@ -1,5 +1,11 @@
+{ = InicioBloque
 hola = Identificador
-356 = Numero
+3 = Numero
 356e+21 = Numero
 256e25 = Numero
-Numero de lineas: 4
+256 = Numero
+399 = Numero
+-> = Puntero
+"Hola" = Cadena
+'@' = Caracter
+} = FinBloque

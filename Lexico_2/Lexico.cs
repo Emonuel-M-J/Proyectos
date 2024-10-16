@@ -262,203 +262,208 @@ namespace Lexico_2
                     break;
                     
                 case 8:
-                setClasificacion(Tipos.FinSentencia);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.FinSentencia);
+                    nuevoEstado = F;
                 break;
                 case 9:
-                setClasificacion(Tipos.InicioBloque);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.InicioBloque);
+                    nuevoEstado = F;
                 break;
                 case 10:
-                setClasificacion(Tipos.FinBloque);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.FinBloque);
+                    nuevoEstado = F;    
                 break;
                 case 11:
-                setClasificacion(Tipos.OperadorTernario);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.OperadorTernario);
+                    nuevoEstado = F;
                 break;
                 case 12:
-                setClasificacion(Tipos.OperadorTermino);
-                nuevoEstado = F;
-                if(transicion == '+' || transicion =='=')
-                {
-                    nuevoEstado = 13;
+                    setClasificacion(Tipos.OperadorTermino);
+                    nuevoEstado = F;
+                    if(transicion == '+' || transicion =='=')
+                    {
+                         nuevoEstado = 13;
 
-                }
+                    }
 
                 break;
                 case 13:
-                setClasificacion(Tipos.IncrementoFactor);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.IncrementoFactor);
+                    nuevoEstado = F;
                 break;
                 case 14:
-                setClasificacion(Tipos.OperadorTermino);
-                nuevoEstado = F;
-                if(transicion == '-'|| transicion =='=')
-                {
-                    nuevoEstado=13;
-                }
-                else if(transicion == '>')
-                {
-                    nuevoEstado = 15;
-                }
+                    setClasificacion(Tipos.OperadorTermino);
+                    nuevoEstado = F;
+                    if(transicion == '-'|| transicion =='=')
+                    {
+                        nuevoEstado=13;
+                    }
+                    else if(transicion == '>')
+                    {
+                        nuevoEstado = 15;
+                    }
                 break;
                 case 15:
-                setClasificacion(Tipos.Puntero);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.Puntero);
+                    nuevoEstado = F;
                 break;
                 case 16:
-                setClasificacion(Tipos.OperadorFactor);
-                nuevoEstado = F;
-                if(transicion== '=')
-                {
-                    nuevoEstado = 17;
-                }
+                    setClasificacion(Tipos.OperadorFactor);
+                    nuevoEstado = F;
+                    if(transicion== '=')
+                    {
+                     nuevoEstado = 17;
+                    }
                 break;
                 case 17:
-                setClasificacion(Tipos.IncrementoFactor);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.IncrementoFactor);
+                    nuevoEstado = F;
                 break;
                 case 18:
-                setClasificacion(Tipos.Caracter);
-                nuevoEstado = F;
-                if(transicion == '&')
-                {
-                    nuevoEstado = 19;
-                }
+                    setClasificacion(Tipos.Caracter);
+                    nuevoEstado = F;
+                    if(transicion == '&')
+                    {
+                        nuevoEstado = 19;
+                    }
                 break;
                 case 19:
-                setClasificacion(Tipos.OperadorLogico);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.OperadorLogico);
+                    nuevoEstado = F;
                 break;
                 case 20:
-                setClasificacion(Tipos.Caracter);
-                nuevoEstado = F;
-                if(transicion == '|')
-                {
-                    nuevoEstado = 19;
-                }
+                    setClasificacion(Tipos.Caracter);
+                    nuevoEstado = F;
+                    if(transicion == '|')
+                    {
+                        nuevoEstado = 19;
+                    }
                 break;
                 case 21:
-                setClasificacion(Tipos.OperadorLogico);
-                nuevoEstado = F;
-                if(transicion == '=')
-                {
-                    nuevoEstado = 22;
-                }
+                    setClasificacion(Tipos.OperadorLogico);
+                    nuevoEstado = F;
+                    if(transicion == '=')
+                    {
+                        nuevoEstado = 22;
+                    }
                 break;
                 case 22:
-                setClasificacion(Tipos.OperadorRelacional);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.OperadorRelacional);
+                    nuevoEstado = F;
                 break;
                 case 23:
-                setClasificacion(Tipos.Asignacion);
-                nuevoEstado = F;
-                if(transicion == '=')
-                {
-                    nuevoEstado = 24;
-                }
+                    setClasificacion(Tipos.Asignacion);
+                    nuevoEstado = F;
+                    if(transicion == '=')
+                    {
+                        nuevoEstado = 24;
+                    }
                 break;
                 case 24:
-                setClasificacion(Tipos.OperadorRelacional);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.OperadorRelacional);
+                    nuevoEstado = F;
                 break;
                 case 25:
-                setClasificacion(Tipos.OperadorRelacional);
-                nuevoEstado = F;
-                if(transicion == '=')
-                {
-                    nuevoEstado = 24;
-                }
+                    setClasificacion(Tipos.OperadorRelacional);
+                    nuevoEstado = F;
+                    if(transicion == '=')
+                    {
+                        nuevoEstado = 24;
+                    }
                 break;
                 case 26:
-                setClasificacion(Tipos.OperadorRelacional); 
-                nuevoEstado = F;
-                if(transicion == '>' || transicion == '=')
-                {
-                    nuevoEstado = 24;
-                }
+                    setClasificacion(Tipos.OperadorRelacional); 
+                    nuevoEstado = F;
+                    if(transicion == '>' || transicion == '=')
+                    {
+                        nuevoEstado = 24;
+                    }
                 break;
                 case 27:
-                setClasificacion(Tipos.Cadena);
-                if(transicion == '"')
-                {
-                    nuevoEstado = 28;
-                }
-                else
-                {
-                    nuevoEstado = E;
-                }
+                    setClasificacion(Tipos.Cadena);
+                    nuevoEstado = 27;
+                    if(transicion == '"')
+                    {
+                        nuevoEstado = 28;
+                    }
+                    else if(finArchivo())
+                    {
+                        nuevoEstado = E;
+                    }
                 break;
                 case 28:
-                nuevoEstado = F;
+                    nuevoEstado = F;
                 break;
                 case 29:
-                setClasificacion(Tipos.Caracter);
-                nuevoEstado = 30;
+                    setClasificacion(Tipos.Caracter);
+                    nuevoEstado = 30;
                 break;
                 case 30:
-                if (transicion == '\'')
-                {
-                    nuevoEstado = 31;
-                }
-                else
-                {
-                    nuevoEstado = E;
-                }
+                    if (transicion == '\'')
+                    {
+                        nuevoEstado = 31;
+                    }
+                    else
+                    {
+                        nuevoEstado = E;
+                    }
                 break;
                 case 31:
-                nuevoEstado = F;
+                    nuevoEstado = F;
                 
                 break;
                 case 32:
-                setClasificacion(Tipos.Caracter);
-                nuevoEstado = F;
+                    setClasificacion(Tipos.Caracter);
+                    nuevoEstado = F;
                 break;
                 case 33:
                     setClasificacion(Tipos.Caracter);
                     nuevoEstado = F;
-                    break;
+                break;
                 case 34:
-                setClasificacion(Tipos.OperadorFactor);
-                nuevoEstado = F;
-                if(transicion == '=')
-                {
-                    nuevoEstado = 17;
-                }
-                else if(transicion == '|')
-                {
-                    nuevoEstado = 35;
-                }
-                else if(transicion == '*')
-                {
-                    nuevoEstado = 36;
-                }
+                    setClasificacion(Tipos.OperadorFactor);
+                    nuevoEstado = F;
+                    if(transicion == '=')
+                    {
+                        nuevoEstado = 17;
+                    }
+                    else if(transicion == '|')
+                    {
+                        nuevoEstado = 35;
+                    }
+                    else if(transicion == '*')
+                    {
+                        nuevoEstado = 36;
+                    }
                 break;
                 case 35:
-                if(transicion == '\n')
-                {
-                nuevoEstado=0;
-                }
+                    if(transicion == '\n')
+                    {
+                        nuevoEstado=0;
+                    }
                 break;
                 case 36:
-                nuevoEstado=36;
-                if(transicion == '*')
-                {
-                nuevoEstado=37;
-                }
-                
+                    nuevoEstado=36;
+                    if(transicion == '*')
+                    {
+                    nuevoEstado=37;
+                    }
+                    else if(finArchivo())
+                    {
+                        nuevoEstado=E;
+                    }
+                    
                 break;
                 case 37:
-                nuevoEstado=36;
-                if(transicion == '*')
-                {
-                nuevoEstado=37;
-                } 
-                else if(transicion == '|')
-                {
-                    nuevoEstado=0;
-                }
+                    nuevoEstado=36;
+                    if(transicion == '*')
+                    {
+                        nuevoEstado=37;
+                    } 
+                    else if(transicion == '/')
+                    {
+                        nuevoEstado=0;
+                    }
                 break;
 
             }
