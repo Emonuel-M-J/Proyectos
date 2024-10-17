@@ -269,33 +269,33 @@ namespace Lexico_2
                 case 8:
                     setClasificacion(Tipos.FinSentencia);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 9:
                     setClasificacion(Tipos.InicioBloque);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 10:
                     setClasificacion(Tipos.FinBloque);
                     nuevoEstado = F;    
-                break;
+                    break;
                 case 11:
                     setClasificacion(Tipos.OperadorTernario);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 12:
                     setClasificacion(Tipos.OperadorTermino);
                     nuevoEstado = F;
                     if(transicion == '+' || transicion =='=')
                     {
-                         nuevoEstado = 13;
+                        nuevoEstado = 13;
 
                     }
 
-                break;
+                    break;
                 case 13:
                     setClasificacion(Tipos.IncrementoFactor);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 14:
                     setClasificacion(Tipos.OperadorTermino);
                     nuevoEstado = F;
@@ -307,11 +307,11 @@ namespace Lexico_2
                     {
                         nuevoEstado = 15;
                     }
-                break;
+                    break;
                 case 15:
                     setClasificacion(Tipos.Puntero);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 16:
                     setClasificacion(Tipos.OperadorFactor);
                     nuevoEstado = F;
@@ -319,11 +319,11 @@ namespace Lexico_2
                     {
                      nuevoEstado = 17;
                     }
-                break;
+                    break;
                 case 17:
                     setClasificacion(Tipos.IncrementoFactor);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 18:
                     setClasificacion(Tipos.Caracter);
                     nuevoEstado = F;
@@ -331,11 +331,11 @@ namespace Lexico_2
                     {
                         nuevoEstado = 19;
                     }
-                break;
+                    break;
                 case 19:
                     setClasificacion(Tipos.OperadorLogico);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 20:
                     setClasificacion(Tipos.Caracter);
                     nuevoEstado = F;
@@ -343,7 +343,7 @@ namespace Lexico_2
                     {
                         nuevoEstado = 19;
                     }
-                break;
+                    break;
                 case 21:
                     setClasificacion(Tipos.OperadorLogico);
                     nuevoEstado = F;
@@ -351,11 +351,11 @@ namespace Lexico_2
                     {
                         nuevoEstado = 22;
                     }
-                break;
+                    break;
                 case 22:
                     setClasificacion(Tipos.OperadorRelacional);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 23:
                     setClasificacion(Tipos.Asignacion);
                     nuevoEstado = F;
@@ -363,11 +363,11 @@ namespace Lexico_2
                     {
                         nuevoEstado = 24;
                     }
-                break;
+                    break;
                 case 24:
                     setClasificacion(Tipos.OperadorRelacional);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 25:
                     setClasificacion(Tipos.OperadorRelacional);
                     nuevoEstado = F;
@@ -375,7 +375,7 @@ namespace Lexico_2
                     {
                         nuevoEstado = 24;
                     }
-                break;
+                    break;
                 case 26:
                     setClasificacion(Tipos.OperadorRelacional); 
                     nuevoEstado = F;
@@ -383,7 +383,7 @@ namespace Lexico_2
                     {
                         nuevoEstado = 24;
                     }
-                break;
+                    break;
                 case 27:
                     setClasificacion(Tipos.Cadena);
                     nuevoEstado = 27;
@@ -395,14 +395,14 @@ namespace Lexico_2
                     {
                         nuevoEstado = E;
                     }
-                break;
+                    break;
                 case 28:
                     nuevoEstado = F;
-                break;
+                    break;
                 case 29:
                     setClasificacion(Tipos.Caracter);
                     nuevoEstado = 30;
-                break;
+                    break;
                 case 30:
                     if (transicion == '\'')
                     {
@@ -412,11 +412,11 @@ namespace Lexico_2
                     {
                         nuevoEstado = E;
                     }
-                break;
+                    break;
                 case 31:
                     nuevoEstado = F;
                 
-                break;
+                    break;
                 case 32:
                     setClasificacion(Tipos.Caracter);
                     nuevoEstado = F;
@@ -424,11 +424,11 @@ namespace Lexico_2
                     {
                         nuevoEstado = 32;
                     }
-                break;
+                    break;
                 case 33:
                     setClasificacion(Tipos.Caracter);
                     nuevoEstado = F;
-                break;
+                    break;
                 case 34:
                     setClasificacion(Tipos.OperadorFactor);
                     nuevoEstado = F;
@@ -444,25 +444,26 @@ namespace Lexico_2
                     {
                         nuevoEstado = 36;
                     }
-                break;
+                    break;
                 case 35:
+                    nuevoEstado=35;
                     if(transicion == '\n')
                     {
                         nuevoEstado=0;
                     }
-                break;
+                    break;
                 case 36:
                     nuevoEstado=36;
                     if(transicion == '*')
                     {
-                    nuevoEstado=37;
+                     nuevoEstado=37;
                     }
                     else if(finArchivo())
                     {
-                        throw new Exception("Se esperaba cierre de comentario");
+                        throw new Error("Se esperaba cierre de comentario",log,linea);
                     }
                     
-                break;
+                    break;
                 case 37:
                     nuevoEstado=36;
                     if(transicion == '*')
@@ -475,9 +476,9 @@ namespace Lexico_2
                     }
                     else if(finArchivo())
                     {
-                        throw new Exception("Se esperaba cierre de comentario");
+                        throw new Error("Se esperaba cierre de comentario",log,linea);
                     }
-                break;
+                    break;
 
             }
             return nuevoEstado;
@@ -490,9 +491,17 @@ namespace Lexico_2
 
             while(estado >= 0)
             {
+                if(estado == 0)
+                {
+                    buffer= "";
+                }
+                
                 transicion = (char)archivo.Peek();
                 estado = automata(estado,transicion); 
+                
+                
                 if(estado == E)
+
                 {
                     if(getClasificacion() == Tipos.Numero)
                     {

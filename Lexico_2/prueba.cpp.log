@@ -1,18 +1,20 @@
+# = Caracter
+include = Identificador
+< = OperadorRelacional
+stdio = Identificador
+> = OperadorRelacional
 { = InicioBloque
 230 = Numero
-// Numero entero230e-30 = Numero
+230e-30 = Numero
 230e+30 = Numero
 230.30e30 = Numero
 230.30e-30 = Numero
 230.30e+30 = Numero
-// Numero en formato cientifico"hola mundo" = Cadena
+"hola mundo" = Cadena
 #64 = Caracter
 - = OperadorTermino
 '@' = Caracter
-/*
-        Hola mundo
-        ITQ
-    *radio = Identificador
+radio = Identificador
 ; = FinSentencia
 < = OperadorRelacional
 <> = OperadorRelacional
@@ -38,5 +40,6 @@
 % = OperadorFactor
 %= = IncrementoFactor
 "" = Cadena
-Error: Lexico, se espera un cierre de comillasen la linea: 17
-Numero de lineas: 17
+' ' = Caracter
+; = FinSentencia
+} = FinBloque
