@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 
 
+
 /*  
     Requerimiento 1: Sobrecargar el constructor Lexico para que reciba como
                      argumento el nombre del archvo a compilar
@@ -17,7 +18,7 @@ using System.Data;
     Requerimiento 3: Agregar operador relacional y Operador Lógico
                     ==, >,=>,<,<=,<>,!=,<=,<        &&,||,!
 */
-namespace Lexico_3
+namespace sintaxis_1
 {
     public class Lexico : Token, IDisposable
     {
@@ -127,6 +128,9 @@ namespace Lexico_3
             log.Close();
             asm.Close();
             
+
+
+            
         }
         /*
             WS	L	D	.	E|e	+	-	;	{	}	?	=	*	%	&	|	!	<	>	"	\'	#	/	\n	EOF	λ
@@ -164,7 +168,6 @@ namespace Lexico_3
             {
                 return 3;
             }
-            
             else if(c== '+')
             {
                 return 5;
@@ -260,25 +263,22 @@ namespace Lexico_3
                 case 15: setClasificacion(Tipos.Puntero); break;
                 case 16: setClasificacion(Tipos.OperadorFactor); break;
                 case 17: setClasificacion(Tipos.IncrementoFactor); break;
-                
-                case 19:setClasificacion(Tipos.OperadorLogico); break; 
-                case 21:setClasificacion(Tipos.OperadorLogico); break;
-
-
+                case 18: setClasificacion(Tipos.Caracter); break;
+                case 19: setClasificacion(Tipos.OperadorLogico); break; 
+                case 20: setClasificacion(Tipos.Caracter); break;
+                case 21: setClasificacion(Tipos.OperadorLogico); break;
                 case 22: setClasificacion(Tipos.OperadorRelacional); break;
+                case 23: setClasificacion(Tipos.Asignacion); break;
                 case 24: setClasificacion(Tipos.OperadorRelacional); break;
                 case 25: setClasificacion(Tipos.OperadorRelacional); break;
                 case 26: setClasificacion(Tipos.OperadorRelacional); break;
-
-                case 23: setClasificacion(Tipos.Asignacion); break;
+                case 29: setClasificacion(Tipos.Caracter); break;
                 case 27: setClasificacion(Tipos.Cadena); break;
-                case 34: setClasificacion(Tipos.OperadorFactor); break;   
-                
                 case 32: setClasificacion(Tipos.Caracter); break;
                 case 33: setClasificacion(Tipos.Caracter); break;
-                case 20: setClasificacion(Tipos.Caracter); break;
-                case 18:setClasificacion(Tipos.Caracter); break;
-                case 29: setClasificacion(Tipos.Caracter); break;
+                case 34: setClasificacion(Tipos.OperadorFactor); break;   
+                
+                
 
             }
         }
@@ -287,10 +287,9 @@ namespace Lexico_3
             char c;
             string buffer = "";
             int estado = 0;
-
+            
             while(estado >= 0)
-            {
-                
+            {   
                 
                 c = (char)archivo.Peek();
                 estado = TRAND[estado, Column(c)];
@@ -322,7 +321,7 @@ namespace Lexico_3
                 {
                     throw new Error(" Lexico, se espera un digito", log, linea);
                 }
-                    else if(getClasificacion() == Tipos.Cadena)
+                else if(getClasificacion() == Tipos.Cadena)
                 {
                     throw new Error(" Lexico, se espera un cierre de comillas", log, linea);
                 }

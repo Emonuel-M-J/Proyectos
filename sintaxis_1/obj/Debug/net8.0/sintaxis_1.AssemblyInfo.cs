@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Lexico_3")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("sintaxis_1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8241846b44be0745ebe4c163d7fcd37ab9cdb59e")]
-[assembly: System.Reflection.AssemblyProductAttribute("Lexico_3")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Lexico_3")]
+[assembly: System.Reflection.AssemblyProductAttribute("sintaxis_1")]
+[assembly: System.Reflection.AssemblyTitleAttribute("sintaxis_1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
