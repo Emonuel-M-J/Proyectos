@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Lexico_3
+namespace sintaxis_1
+
 {
     public class Error : Exception
     {
@@ -17,7 +18,10 @@ namespace Lexico_3
         {
             log.WriteLine("Error:" + message + " en la linea: " + linea);
         }
-        
+        public Error(string message)
+        {
+            Console.WriteLine("Error:" + message );
+        }
         
     }
 }

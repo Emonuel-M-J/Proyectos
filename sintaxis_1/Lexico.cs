@@ -23,8 +23,8 @@ namespace sintaxis_1
     public class Lexico : Token, IDisposable
     {
         StreamReader archivo;
-        StreamWriter log;
-        StreamWriter asm;
+        protected StreamWriter log;
+        protected StreamWriter asm;
         int linea;
         const int F=-1;
         const int E= -2;
@@ -257,26 +257,27 @@ namespace sintaxis_1
                 case 9: setClasificacion(Tipos.InicioBloque); break;
                 case 10: setClasificacion(Tipos.FinBloque); break;
                 case 11: setClasificacion(Tipos.OperadorTernario); break;
-                case 12: setClasificacion(Tipos.OperadorTermino); break;
-                case 13: setClasificacion(Tipos.IncrementoTermino); break;
+                case 12:
                 case 14: setClasificacion(Tipos.OperadorTermino); break;
+                case 13: setClasificacion(Tipos.IncrementoTermino); break;
                 case 15: setClasificacion(Tipos.Puntero); break;
-                case 16: setClasificacion(Tipos.OperadorFactor); break;
+                case 16:
+                case 34: setClasificacion(Tipos.OperadorFactor); break;
                 case 17: setClasificacion(Tipos.IncrementoFactor); break;
-                case 18: setClasificacion(Tipos.Caracter); break;
-                case 19: setClasificacion(Tipos.OperadorLogico); break; 
-                case 20: setClasificacion(Tipos.Caracter); break;
-                case 21: setClasificacion(Tipos.OperadorLogico); break;
-                case 22: setClasificacion(Tipos.OperadorRelacional); break;
-                case 23: setClasificacion(Tipos.Asignacion); break;
-                case 24: setClasificacion(Tipos.OperadorRelacional); break;
-                case 25: setClasificacion(Tipos.OperadorRelacional); break;
-                case 26: setClasificacion(Tipos.OperadorRelacional); break;
-                case 29: setClasificacion(Tipos.Caracter); break;
-                case 27: setClasificacion(Tipos.Cadena); break;
-                case 32: setClasificacion(Tipos.Caracter); break;
+                case 18:
+                case 20:
+                case 29:
+                case 32:
                 case 33: setClasificacion(Tipos.Caracter); break;
-                case 34: setClasificacion(Tipos.OperadorFactor); break;   
+                case 19:
+                case 21: setClasificacion(Tipos.OperadorLogico); break;
+                case 22:
+                case 24:
+                case 25:
+                case 26: setClasificacion(Tipos.OperadorRelacional); break;
+                case 23: setClasificacion(Tipos.Asignacion); break;
+                case 27: setClasificacion(Tipos.Cadena); break;
+
                 
                 
 
@@ -334,6 +335,20 @@ namespace sintaxis_1
                     throw new Error("Lexico, se espera cierre de comentario", log, linea);
                 }
                     
+            }
+            setContenido(buffer);
+            if(getClasificacion() == Tipos.Identificador) 
+            {
+                switch(getContenido())
+                {
+                    case "char":
+                    case "int":
+                    case "float":
+                        setClasificacion(Tipos.TipoDato);
+                    break;
+
+                }
+
             }
             
            

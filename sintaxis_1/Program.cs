@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lexico_3
+namespace sintaxis_1
 {
-    public class Program
+    public class Program : Token
     {
         static void Main(string[] args)
         {
             
             try
             {
-                using (Lexico l  = new Lexico("prueba.cpp"))
-                {
+                using (Lenguaje l  = new Lenguaje("prueba.cpp"))
+                
                     
-                    while (!l.finArchivo())
+                   /* while (!l.finArchivo())
                     {
                         l.nextToken( );   
                     }
-
-                    
-                }
+                    */
+                   
+                    l.Programa();
+                
             }
             catch (Exception e)
             {

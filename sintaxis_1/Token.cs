@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Lexico_3
+namespace sintaxis_1
 
 {
     public class Token
@@ -14,7 +14,7 @@ namespace Lexico_3
             InicioBloque, FinBloque, OperadorTernario,
             OperadorTermino, OperadorFactor, IncrementoTermino, 
             IncrementoFactor, Puntero, Asignacion,
-            Moneda, OperadorRelacional,OperadorLogico,Cadena
+            Moneda, OperadorRelacional,OperadorLogico,Cadena, TipoDato
         }
         private string contenido;
         private Tipos clasificacion;

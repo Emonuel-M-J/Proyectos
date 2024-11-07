@@ -1,20 +1,17 @@
-#include <stdio>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+char a, b, c, d;
+int radio;
+float area;
+
+static void Main(string[] args)
 {
-    230     // Numero entero
-    230e-30
-    230e+30
-    230.30e30
-    230.30e-30
-    230.30e+30  // Numero en formato cientifico
-    "hola mundo
-    #64-'@'
-    /*
-        Hola mundo
-        ITQ
-    */
-    radio;<<>>!!====;&&&|||+++---+=-=**=/=%%=
-    ""
-    ' ';
-    ->
-    ()
+  area = radio * radio;
+  x = (3 + 5) * 8 - (10 - 4) / 2;
+  b = 0;
+  c = 10;
+  d = b + c;
 }
