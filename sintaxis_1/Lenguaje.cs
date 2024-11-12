@@ -2,6 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+/*
+    REQUERIMIENTOS
+    - Indicar en el error lexico o sintactico el numero de linea y caracter 
+    - En el log colocar el nombre al archivo a compilar la fecha y la hora 
+    - Agregar el resto de asignaciones
+    -Emular el Console.Write() y Console.WriteLine( ) 
+    - Emular el Console.Read() y Console.ReadLine()
+*/
 
 namespace sintaxis_1
 {
@@ -19,7 +27,8 @@ namespace sintaxis_1
         // Cerradura epsilon
         //Programa  -> Librerias? Variables? Main
         public void Programa()
-        {   if(getContenido() == "using")
+        {   
+            if(getContenido() == "using")
             {
                 Librerias();
             }
@@ -79,8 +88,15 @@ namespace sintaxis_1
         private void BloqueInstrucciones()
         {
             match("{");
-            ListaInstrucciones();
-            match("}");
+            if(getContenido() != "}") 
+            {
+                ListaInstrucciones();
+            } 
+            else 
+            {
+                match("}");
+            }
+
 
         }          
             //ListaInstrucciones -> Instruccion ListaInstrucciones?
@@ -90,6 +106,10 @@ namespace sintaxis_1
             if(getContenido() != "}")
             {
                 ListaInstrucciones();
+            }
+            else
+            {
+                match("}");
             }
 
         }
@@ -123,15 +143,45 @@ namespace sintaxis_1
             else
             {
                 Asignacion();
+                match(";");
             }
         }
             //Asignacion -> Identificador = Expresion;
         private void Asignacion()
         {
             match(Tipos.Identificador);
-            match("=");
-            Expresion();
-            match(";");
+            if(getContenido()== "=")
+            {
+                match("=");
+                Expresion();
+                if(getContenido()== "Console")
+                {
+                    console();
+
+                }
+            }
+            else if(getContenido()== " ++ ")
+            {
+                match("++");
+            }
+            else if(getContenido()== "--")
+            {
+                match("--");
+            }
+            else if(getClasificacion() == Tipos.IncrementoTermino)
+            {
+                match(Tipos.IncrementoTermino);
+                Expresion();
+            }
+            else if(getClasificacion() == Tipos.IncrementoFactor) 
+            {
+                match(Tipos.IncrementoFactor); 
+                Expresion();
+            }
+            else 
+            {
+                match(Tipos.Identificador);
+            }
 
         }
             //If -> if (Condicion) bloqueInstrucciones | instruccion
@@ -144,7 +194,7 @@ namespace sintaxis_1
             match(")");
             if(getContenido()== "{")
             {   
-                match("{");
+                
                 BloqueInstrucciones();
             }
             else
@@ -158,7 +208,7 @@ namespace sintaxis_1
                 match("else");
                 if(getContenido() == "{")
                 {   
-                    match("{");
+                    
                     BloqueInstrucciones();
                 }
                 else
@@ -173,7 +223,9 @@ namespace sintaxis_1
             //Condicion -> Expresion operadorRelacional Expresion
         private void Condicion()
         {
-
+            Expresion();
+            match(Tipos.OperadorRelacional);
+            Expresion();
         }
 
             //While -> while(Condicion) bloqueInstrucciones | instruccion
@@ -185,7 +237,7 @@ namespace sintaxis_1
             match(")");
             if(getContenido()== "{")
             {   
-                match("{");
+                
                 BloqueInstrucciones();
             }
             else
@@ -202,7 +254,7 @@ namespace sintaxis_1
             match("do");
             if(getContenido()== "{")
             {   
-                match("{");
+                
                 BloqueInstrucciones();
             }
             else
@@ -217,8 +269,8 @@ namespace sintaxis_1
 
         }
            
-            //For -> for(Asignacion; Condicion; Asignacion)
-            // BloqueInstrucciones | Intruccion 
+        //For -> for(Asignacion; Condicion; Asignacion)
+        // BloqueInstrucciones | Intruccion 
         private void For()
         {
             match("for");
@@ -231,7 +283,7 @@ namespace sintaxis_1
             match(")");
             if(getContenido()== "{")
             {   
-                match("{");
+                
                 BloqueInstrucciones();
             }
             else
@@ -250,12 +302,24 @@ namespace sintaxis_1
             {
                 match("WriteLine");
             }
-            else 
+            else if (getContenido() == "Write")
             {
                 match("Write");
             }
-            match("(");
+            else if (getContenido() == "Read")
+            {
+                match("Read");
+            }
+            else
+            {
+                match("ReadLine");
+            }
 
+            match("(");
+            Console.WriteLine(getContenido(). Trim('\"'));
+            match(Tipos.Cadena);
+            match(")");
+            match(";");
 
 
             /*else
@@ -264,15 +328,10 @@ namespace sintaxis_1
             }*/
 
         }
-        private void CadenaConcatenaciones()
-        {
-            match("+");
-            if()
-            {
-
-            }
-        }
-           // Main      -> static void Main(string[] args) BloqueInstrucciones 
+        
+    
+        
+        // Main      -> static void Main(string[] args) BloqueInstrucciones 
         private void Main()
         {
             match("static");
@@ -284,7 +343,6 @@ namespace sintaxis_1
             match("]");
             match("args");
             match(")");
-            
             BloqueInstrucciones();
             
         }

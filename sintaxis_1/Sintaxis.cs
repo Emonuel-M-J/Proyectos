@@ -22,7 +22,7 @@ namespace sintaxis_1
             }
             else
             {
-                throw  new Error("Sintaxis: se espera un" + contenido);
+                throw  new Error("Sintaxis: se espera un: " + contenido ,log,linea);
             }
 
         }

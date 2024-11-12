@@ -25,7 +25,7 @@ namespace sintaxis_1
         StreamReader archivo;
         protected StreamWriter log;
         protected StreamWriter asm;
-        int linea;
+        protected int linea;
         const int F=-1;
         const int E= -2;
         int [,] TRAND ={
@@ -115,6 +115,9 @@ namespace sintaxis_1
             { 
                 throw new Error("El archivo no es correcto", log);
             }
+
+            DateTime fechaEntrada = DateTime.Now;
+            log.WriteLine("Fecha de compilacion: " + fechaEntrada);
                 
         }
         
@@ -345,6 +348,13 @@ namespace sintaxis_1
                     case "int":
                     case "float":
                         setClasificacion(Tipos.TipoDato);
+                    break;
+                    case "if":
+                    case "else":
+                    case "do":
+                    case "while":
+                    case "for":
+                        setClasificacion(Tipos.PalabraReservada);
                     break;
 
                 }

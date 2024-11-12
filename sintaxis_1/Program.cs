@@ -12,7 +12,7 @@ namespace sintaxis_1
             
             try
             {
-                using (Lenguaje l  = new Lenguaje("prueba.cpp"))
+                using (Lenguaje l  = new ("prueba.cpp"))
                 
                     
                    /* while (!l.finArchivo())
