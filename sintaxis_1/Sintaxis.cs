@@ -34,7 +34,7 @@ namespace sintaxis_1
             }
             else
             {
-                throw  new Error("Sintaxis: se espera un" + clasificacion);
+                throw  new Error("Sintaxis: se espera un" + clasificacion,log,linea);
             }
         }  
     }

@@ -1,12 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Threading.Tasks;
 /*
     REQUERIMIENTOS
     - Indicar en el error lexico o sintactico el numero de linea y caracter 
+        El numero de linea
     - En el log colocar el nombre al archivo a compilar la fecha y la hora 
+        Ya  
     - Agregar el resto de asignaciones
+        Y  a 
     -Emular el Console.Write() y Console.WriteLine( ) 
     - Emular el Console.Read() y Console.ReadLine()
 */
@@ -153,14 +157,43 @@ namespace sintaxis_1
             if(getContenido()== "=")
             {
                 match("=");
-                Expresion();
                 if(getContenido()== "Console")
                 {
                     console();
+                    
+                }
+                else
+                {
+                    Expresion();
+                }
+                /*
+                
+                if(getContenido()== "Console")
+                {
+                    match("Console");
+                    match(".");
 
                 }
+                
+                else if(getContenido()== "Read")
+                {
+                    match("Read");
+                   
+                   
+                   
+                }
+                else if(getContenido()== "ReadLine")
+                {
+                    match("ReadLine");
+                   
+                    
+                }
+                
+                //match("(");
+                //match(")"); 
+                */
             }
-            else if(getContenido()== " ++ ")
+            else if(getContenido()== "++")
             {
                 match("++");
             }
@@ -178,11 +211,7 @@ namespace sintaxis_1
                 match(Tipos.IncrementoFactor); 
                 Expresion();
             }
-            else 
-            {
-                match(Tipos.Identificador);
-            }
-
+            
         }
             //If -> if (Condicion) bloqueInstrucciones | instruccion
             //(else bloqueInstrucciones | instruccion)?
@@ -297,8 +326,16 @@ namespace sintaxis_1
         {
             match("Console");
             match(".");
+            if (getContenido()== "Read" )
+            {
+                match("Read");
+            }
+            else if(getContenido()== "ReadLine")
+            {
+                match("ReadLine");
+            }
             
-            if (getContenido() == "WriteLine")
+            else if (getContenido() == "WriteLine")
             {
                 match("WriteLine");
             }
@@ -306,20 +343,13 @@ namespace sintaxis_1
             {
                 match("Write");
             }
-            else if (getContenido() == "Read")
-            {
-                match("Read");
-            }
-            else
-            {
-                match("ReadLine");
-            }
+            
 
             match("(");
-            Console.WriteLine(getContenido(). Trim('\"'));
-            match(Tipos.Cadena);
+           // Console.WriteLine(getContenido(). Trim('\"'));
+           // match(Tipos.Cadena);
             match(")");
-            match(";");
+           // match(";");
 
 
             /*else

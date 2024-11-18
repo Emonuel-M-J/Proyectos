@@ -118,6 +118,7 @@ namespace sintaxis_1
 
             DateTime fechaEntrada = DateTime.Now;
             log.WriteLine("Fecha de compilacion: " + fechaEntrada);
+            log.WriteLine("Archivo: "+ nombre);
                 
         }
         

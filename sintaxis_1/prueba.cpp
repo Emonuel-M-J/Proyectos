@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 
 static void Main(string[] args)
 {
-  char a;
+  int a;
   int b;
 
-  a = 0;
+  a=0;
 
   if (1 == 2)
   {
     do
     {
-      Console.ReadLine(".");
+      //Console.WriteLine("Hola");
     } while (a < 10);
     a = 10;
     if (1 == 2)
@@ -26,12 +26,13 @@ static void Main(string[] args)
   {
     do
     {
-      Console.WriteLine(".");
+      //Console.WriteLine(".");
     } while (a < 5);
     a = 40;
-    for (a = 0; a < 10; a = 2)
+    for (a = 0; a < 10; a+=1)
     {
       //int while;
     }
+    
   }
 }
