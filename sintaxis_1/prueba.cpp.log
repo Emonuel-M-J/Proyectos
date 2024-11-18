@@ -1,4 +1,4 @@
-Fecha de compilacion: 18/11/2024 10:35:12 a. m.
+Fecha de compilacion: 18/11/2024 01:37:32 p. m.
 Archivo: prueba.cpp
 using = Identificador
 Constructor Lenguaje
@@ -52,6 +52,13 @@ if = PalabraReservada
 { = InicioBloque
 do = PalabraReservada
 { = InicioBloque
+Console = Identificador
+. = Caracter
+WriteLine = Identificador
+( = Caracter
+"Hola" = Cadena
+) = Caracter
+; = FinSentencia
 } = FinBloque
 while = PalabraReservada
 ( = Caracter
@@ -84,6 +91,13 @@ else = PalabraReservada
 { = InicioBloque
 do = PalabraReservada
 { = InicioBloque
+Console = Identificador
+. = Caracter
+Write = Identificador
+( = Caracter
+"." = Cadena
+) = Caracter
+; = FinSentencia
 } = FinBloque
 while = PalabraReservada
 ( = Caracter

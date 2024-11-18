@@ -14,7 +14,7 @@ static void Main(string[] args)
   {
     do
     {
-      //Console.WriteLine("Hola");
+      Console.WriteLine("Hola");
     } while (a < 10);
     a = 10;
     if (1 == 2)
@@ -26,7 +26,7 @@ static void Main(string[] args)
   {
     do
     {
-      //Console.WriteLine(".");
+      Console.Write(".");
     } while (a < 5);
     a = 40;
     for (a = 0; a < 10; a+=1)

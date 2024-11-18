@@ -329,26 +329,53 @@ namespace sintaxis_1
             if (getContenido()== "Read" )
             {
                 match("Read");
+                match("(");
+                match(")");
+                char datos = (char)Console.Read();
+                Console.WriteLine("Datos dados: "+ datos);
+
             }
             else if(getContenido()== "ReadLine")
             {
                 match("ReadLine");
+                match("(");
+                match(")");
+                string datos = Console.ReadLine();
+                Console.WriteLine("Datos dados: "+ datos);
             }
             
             else if (getContenido() == "WriteLine")
             {
                 match("WriteLine");
+                match("(");
+                if (getClasificacion() == Tipos.Cadena) 
+                {
+                    
+                    Console.WriteLine(getContenido(). Trim('\"'));
+                    match(Tipos.Cadena); 
+                }
+                match(")"); 
+                match(";");
             }
             else if (getContenido() == "Write")
             {
                 match("Write");
+                match("(");
+                if (getClasificacion() == Tipos.Cadena) 
+                {
+                    
+                    Console.Write(getContenido(). Trim('\"'));
+                    match(Tipos.Cadena);
+                }
+                match(")"); 
+                match(";");
             }
             
 
-            match("(");
+           // match("(");
            // Console.WriteLine(getContenido(). Trim('\"'));
            // match(Tipos.Cadena);
-            match(")");
+            //match(")");
            // match(";");
 
 
