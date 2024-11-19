@@ -159,39 +159,37 @@ namespace sintaxis_1
                 match("=");
                 if(getContenido()== "Console")
                 {
-                    console();
+                    match("Console");
+                    match(".");
+                    if (getContenido()== "Read" )
+                    {
+                        match("Read");
+                        match("(");                
+                        match(")");
+                        Console.Read();
+                        
+                
+                    }
+                    else if(getContenido()== "ReadLine")
+                    {
+                        match("ReadLine");
+                        match("(");
+                        match(")");
+                        Console.ReadLine();
+                       
+               
+                    }
+                     //match(";");
                     
                 }
+                
+                
                 else
                 {
                     Expresion();
                 }
-                /*
                 
-                if(getContenido()== "Console")
-                {
-                    match("Console");
-                    match(".");
-
-                }
-                
-                else if(getContenido()== "Read")
-                {
-                    match("Read");
-                   
-                   
-                   
-                }
-                else if(getContenido()== "ReadLine")
-                {
-                    match("ReadLine");
-                   
-                    
-                }
-                
-                //match("(");
-                //match(")"); 
-                */
+            
             }
             else if(getContenido()== "++")
             {
@@ -326,34 +324,25 @@ namespace sintaxis_1
         {
             match("Console");
             match(".");
-            if (getContenido()== "Read" )
-            {
-                match("Read");
-                match("(");
-                match(")");
-                char datos = (char)Console.Read();
-                Console.WriteLine("Datos dados: "+ datos);
-
-            }
-            else if(getContenido()== "ReadLine")
-            {
-                match("ReadLine");
-                match("(");
-                match(")");
-                string datos = Console.ReadLine();
-                Console.WriteLine("Datos dados: "+ datos);
-            }
             
-            else if (getContenido() == "WriteLine")
+             if (getContenido() == "WriteLine")
             {
                 match("WriteLine");
                 match("(");
                 if (getClasificacion() == Tipos.Cadena) 
                 {
                     
-                    Console.WriteLine(getContenido(). Trim('\"'));
+                    Console.WriteLine(getContenido(). Trim('\"'));                    
                     match(Tipos.Cadena); 
+               
                 }
+                else 
+                {
+                   // match(")");
+                    Console.WriteLine();
+                    //match(";");   
+                }
+
                 match(")"); 
                 match(";");
             }
