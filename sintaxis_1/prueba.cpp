@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,53 +5,39 @@ using System.Threading.Tasks;
 
 static void Main(string[] args)
 {
-    char c;
-    int  a,b,c,d;
-    int  i,k;
+  
+  //Console.ReadLine();
+  int a, b= (3 + 5) * 8 - (10 - 2*b) / b; // 61
+  a--;
+  a+=40;
+  a*=2;
+  a--;
+  a-=99;
 
+  int n = 5;
 
-    a = (3 + 5) * 8 - (10 - 4) / 2; // 61
-
-    if (1 != 2)
-    {
-        Console.WriteLine("Ingrese el valor de d = ");
-       d = Console.ReadLine();
-        if (d % 2 == 0)
-        {
-            for (i = 0; i < d; i++)
-            {
-                Console.Write("*");
-            }
-            Console.WriteLine();
-            i = 0;
-            do
-            {
-                Console.Write("-");
-                i++;
-            } while (i < d);
-            i = 0;
-            Console.WriteLine();
-            while (i < d)
-            {
-                Console.Write("-");
-                i++;
-            }
-            for (i = d; i >= 0; i--)
-            {
-                Console.Write(" - ");
-            }
-            Console.WriteLine();
-            for (i = 0; i < d; i += 2)
-            {
-                for (j = 0; j <= i; j += 1)
-                {
-                    if (j % 2 == 0)
-                        Console.Write("+");
-                    else
-                        Console.Write("-");
-                }
-                Console.Write();
-            }
-        }
+  for(b = 100; a < n; a++) {
+    b++;
+    while( b != 5 ) {
+      if(n == 5) {
+        Console.WriteLine("5 es igual a " + n + " " + a + " " + b );
+      } else {
+        Console.WriteLine("5 es diferente a " + n);
+      }
     }
+  }
+
+  if(a % 2 != 0) {
+    Console.WriteLine("Es impar " + a);
+    if(b == 2) {
+      Console.WriteLine("b es igual a 2");
+    } else if( b > 3) {
+      Console.WriteLine("b es mayor a 3 y vale " + b);
+    }
+    else {
+      Console.WriteLine("b no es igual a 2 y vale " + b);
+    }
+  } else {
+    Console.WriteLine("Es impar");
+  }
 }

@@ -26,6 +26,7 @@ namespace sintaxis_1
         protected StreamWriter log;
         protected StreamWriter asm;
         protected int linea;
+        protected int columna;
         const int F=-1;
         const int E= -2;
         int [,] TRAND ={
@@ -305,6 +306,15 @@ namespace sintaxis_1
                 if(estado >= 0)
                 {
                     archivo.Read();
+                    if (char.IsWhiteSpace(c))
+                    {
+                        columna++;
+
+                    }
+                    else if (char.IsLetterOrDigit(c))
+                    {
+                        columna++;
+                    }
                     if(c == '\n')
                     {
                         linea++;
@@ -366,7 +376,7 @@ namespace sintaxis_1
             if(!finArchivo())
             {
                 setContenido(buffer);
-                log.WriteLine(getContenido() + " = " + getClasificacion()); 
+               // log.WriteLine(getContenido() + " = " + getClasificacion()); 
                   
                      
             }                   

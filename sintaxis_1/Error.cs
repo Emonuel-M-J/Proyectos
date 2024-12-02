@@ -18,6 +18,10 @@ namespace sintaxis_1
         {
             log.WriteLine("Error:" + message + " en la linea: " + linea);
         }
+         public Error(string message, StreamWriter log, int linea, int columna) : base(message + "En la linea: "+ linea+", columna: "+ columna)
+        {
+            log.WriteLine("Error:" + message + " en la linea" + linea +"columna: "+ columna);
+        }
         public Error(string message)
         {
             Console.WriteLine("Error:" + message );
