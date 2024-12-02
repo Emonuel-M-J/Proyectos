@@ -249,20 +249,51 @@ namespace sintaxis_1
             else if(getContenido()== "++")
             {
                 match("++");
+                v.setValor(v.getValor() + 1);
             }
             else if(getContenido()== "--")
             {
                 match("--");
+                v.setValor(v.getValor() - 1);
             }
             else if(getClasificacion() == Tipos.IncrementoTermino)
             {
+                String Contenido = getContenido();
                 match(Tipos.IncrementoTermino);
                 Expresion();
+                if (Contenido == "+=")
+                {
+                    float resultado=s.Pop();
+                    v.setValor(v.getValor() + resultado);
+                }
+                else
+                {
+                    float resultado=s.Pop();
+                    v.setValor(v.getValor() - resultado);
+                }
+                
             }
             else if(getClasificacion() == Tipos.IncrementoFactor) 
             {
+                String contenido = getContenido();
                 match(Tipos.IncrementoFactor); 
                 Expresion();
+                if (contenido == "*=")
+                {
+                    float resultado=s.Pop();
+                    v.setValor(v.getValor() * resultado);
+                }
+                else if (contenido == "/=")
+                {
+                    float resultado=s.Pop();
+                    v.setValor(v.getValor() / resultado);
+                }
+                else if (contenido == "%=")
+                {
+                    float resultado=s.Pop();
+                    v.setValor(v.getValor() % resultado);
+                }
+                
             }
             float r = s.Pop();
             v.setValor(r);
