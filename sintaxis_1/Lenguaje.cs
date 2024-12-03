@@ -119,13 +119,55 @@ namespace sintaxis_1
             {
                 throw new Error("Sintaxis: La variable "+ getContenido() +" ya existe", log, linea,columna);
             }
+            string val= getContenido();
             l.Add(new Variable(t, getContenido()));
             match(Tipos.Identificador);
             if(getContenido()== "=")
             {
+                Variable? v = l.Find(variable => variable.getNombre() == val);
                 match("=");
-                Expresion();
-                float r= s.Pop();
+                if(getContenido()== "Console")
+                {
+                    match("Console");
+                    match(".");
+                    if (getContenido()== "Read" )
+                    {
+                        match("Read");
+                        match("(");                
+                        match(")");
+                        int value = Console.Read();
+
+                        v.setValor(value);
+                    
+                    }
+                    else if(getContenido()== "ReadLine")
+                    {
+                        match("ReadLine");
+                        match("(");
+                        match(")");
+                        string? value = Console.ReadLine();
+                        if (int.TryParse(value, out int parsedValue))
+                        {
+                            v.setValor(parsedValue); 
+                        }
+                        else
+                        {
+                            throw new Error("Entrada no válida", log, linea, columna);
+                        }
+                       
+               
+                    }
+                    
+                }
+                else 
+                {
+
+                    Expresion();
+                    float r= s.Pop();
+                    v.setValor(r);
+                }
+                
+               
             }
             if(getContenido() == ",")
             {
@@ -172,15 +214,15 @@ namespace sintaxis_1
             }
             else if(getContenido() == "while")
             {
-                While(ejecuta);
+                While(true);
             }
             else if(getContenido() == "do")
             {
-                Do(ejecuta);
+                Do(true);
             }
             else if(getContenido() == "for")
             {
-                For(ejecuta);
+                For(true);
             }
             else if(getClasificacion() == Tipos.TipoDato)
             {
@@ -200,7 +242,7 @@ namespace sintaxis_1
             {
                 throw new Error("Sintaxis: La variable  "+ getContenido() +" no está definida", log, linea,columna);
             }
-            s.Push(v.getValor());
+           // s.Push(v.getValor());
             //Console.Write(getContenido() + " = ");
             
             match(Tipos.Identificador);
@@ -237,14 +279,15 @@ namespace sintaxis_1
                        
                
                     }
-                    //match(";");
+                  
                 }
                 else
                 {
                     Expresion();
+                    float resultado = s.Pop();
+                    v.setValor(resultado); 
                 }
-               // Console.WriteLine(" = " + s.Pop());
-                //displayStack();
+               
             }
             else if(getContenido()== "++")
             {
@@ -295,8 +338,7 @@ namespace sintaxis_1
                 }
                 
             }
-            float r = s.Pop();
-            v.setValor(r);
+            
             
         }
             //If -> if (Condicion) bloqueInstrucciones | instruccion
@@ -322,15 +364,20 @@ namespace sintaxis_1
             if(getContenido() == "else")
             {
                 match("else");
+                
+                
+                    
                 if(getContenido() == "{")
                 {   
                     
-                    BloqueInstrucciones(false);
+                    BloqueInstrucciones(!ejecuta);
                 }
                 else
                 {
-                    Instruccion(false);
+                    Instruccion(!ejecuta);
                 }
+                
+                
             }
 
         }
@@ -433,20 +480,37 @@ namespace sintaxis_1
             {
                 match("WriteLine");
                 match("(");
-                if (getClasificacion() == Tipos.Cadena) 
+                if ( getClasificacion() == Tipos.Identificador) 
                 {
-                    
-                    Console.WriteLine(getContenido(). Trim('\"'));                    
-                    match(Tipos.Cadena); 
-               
-                }
-                else 
-                {
-                   
-                    Console.WriteLine();
-                       
-                }
+                    Variable? v = l.Find(variable => variable.getNombre() == getContenido());
+                    if(v == null)
+                    {
+                        throw new Error("Sintaxis: La variable  "+ getContenido() +" no está definida", log, linea,columna);
+                    }
+                     match(Tipos.Identificador);
+                    if (ejecuta)
+                    {
+                        Console.Write(v.getValor());
 
+                    }
+                
+                }
+            else 
+            {   if (ejecuta)
+                {
+                    Console.Write(getContenido(). Trim('\"'));   
+                }
+                           
+                match(Tipos.Cadena);
+                
+            }
+            
+            if(getContenido() == "+")
+            {
+                match("+");
+                Concatenaciones(ejecuta);
+            }
+                
                 match(")"); 
                 match(";");
             }
@@ -454,12 +518,36 @@ namespace sintaxis_1
             {
                 match("Write");
                 match("(");
-                if (getClasificacion() == Tipos.Cadena) 
+               if ( getClasificacion() == Tipos.Identificador) 
                 {
-                    
-                    Console.Write(getContenido(). Trim('\"'));
-                    match(Tipos.Cadena);
+                    Variable? v = l.Find(variable => variable.getNombre() == getContenido());
+                    if(v == null)
+                    {
+                        throw new Error("Sintaxis: La variable  "+ getContenido() +" no está definida", log, linea,columna);
+                    }
+                     match(Tipos.Identificador);
+                    if (ejecuta)
+                    {
+                        Console.Write(v.getValor());
+
+                    }
+                
                 }
+            else 
+            {   if (ejecuta)
+                {
+                    Console.Write(getContenido(). Trim('\"'));   
+                }
+                           
+                match(Tipos.Cadena);
+                
+            }
+            
+            if(getContenido() == "+")
+            {
+                match("+");
+                Concatenaciones(ejecuta);
+            }
                 match(")"); 
                 match(";");
             }
@@ -531,7 +619,8 @@ namespace sintaxis_1
                 float n1 = s.Pop();
                 float n2 = s.Pop();
 
-                switch(operador){
+                switch(operador)
+                {
 
                     case "*": s.Push(n2 * n1); break;
                     case "/": s.Push(n2 / n1); break;
@@ -568,22 +657,37 @@ namespace sintaxis_1
                 match(")");
             }
         }
-        private void Concatenaciones()
+        private void Concatenaciones(bool ejecuta)
         {
             if ( getClasificacion() == Tipos.Identificador) 
             {
+                Variable? v = l.Find(variable => variable.getNombre() == getContenido());
+                if(v == null)
+                {
+                    throw new Error("Sintaxis: La variable  "+ getContenido() +" no está definida", log, linea,columna);
+                }
                 match(Tipos.Identificador);
+                if (ejecuta)
+                {
+                    Console.Write(v.getValor());
+
+                }
                 
             }
             else 
-            {                   
+            {   if (ejecuta)
+                {
+                     Console.Write(getContenido(). Trim('\"'));   
+                }
+                           
                 match(Tipos.Cadena);
+                
             }
             
             if(getContenido() == "+")
             {
                 match("+");
-                Concatenaciones();
+                Concatenaciones(ejecuta);
             }
             
         }

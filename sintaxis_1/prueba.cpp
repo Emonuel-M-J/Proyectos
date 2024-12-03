@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 static void Main(string[] args)
 {
   
-  //Console.ReadLine();
-  int a, b= (3 + 5) * 8 - (10 - 2*b) / b; // 61
+  int b= Console.ReadLine();
+  int a=  (3 + 5) * 8 - (10 - 2*b) / b; // 61
   a--;
   a+=40;
   a*=2;
@@ -20,7 +20,7 @@ static void Main(string[] args)
     b++;
     while( b != 5 ) {
       if(n == 5) {
-        Console.WriteLine("5 es igual a " + n + " " + a + " " + b );
+        Console.Write("5 es igual a " + n + " " + a + " " + b );
       } else {
         Console.WriteLine("5 es diferente a " + n);
       }
