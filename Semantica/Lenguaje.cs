@@ -263,8 +263,11 @@ namespace Semantica
                 }
                 else
                 {
+                    Console.WriteLine("Antes: " + maximoTipo);
                     Expresion();
+                    Console.WriteLine("Despues: " + maximoTipo);
                     r = s.Pop();
+                    // Requerimiento 4
                     v.setValor(r);
                 }
             }
@@ -552,6 +555,10 @@ namespace Semantica
             if (getClasificacion() == Tipos.Numero)
             {
                 Variable.valorToTipoDato(float.Parse(getContenido()));
+                if (maximoTipo < Variable.valorToTipoDato(float.Parse(getContenido())))
+                {
+                    maximoTipo = Variable.valorToTipoDato(float.Parse(getContenido()));
+                }
                 s.Push(float.Parse(getContenido()));
                 //Console.Write(getContenido() + " ");
                 match(Tipos.Numero);
@@ -563,6 +570,10 @@ namespace Semantica
                 {
                     throw new Error("Sintaxis: la variable " + getContenido() + " no está definida", log, linea, columna);
                 }
+                if (maximoTipo < v.GetTipoDato())
+                {
+                    maximoTipo = v.GetTipoDato();
+                }
                 s.Push(v.getValor());
                 //Console.Write(getContenido() + " ");
                 match(Tipos.Identificador);
@@ -570,7 +581,27 @@ namespace Semantica
             else
             {
                 match("(");
+                Variable.TipoDato tipoCasteo = Variable.TipoDato.Char;
+                bool huboCasteo = false;
+                
+                if (getClasificacion() == Tipos.TipoDato)
+                {
+                    switch(getContenido())
+                    {
+                        case "int": tipoCasteo =Variable.TipoDato.Int; break;
+                        case "float": tipoCasteo =Variable.TipoDato.Float; break;
+
+                    }
+                    match(Tipos.TipoDato);
+                    match(")");
+                    match("(");
+                   // huboCasteo= true;
+                }
                 Expresion();
+                if(huboCasteo)
+                {
+                    maximoTipo =tipoCasteo;
+                }
                 match(")");
             }
         }
