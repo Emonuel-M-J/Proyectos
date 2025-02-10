@@ -1,9 +1,15 @@
 /*
 
-REQUERIMIENTOS:
+    REQUERIMIENTOS:
 
-1) En la clase token, implementar set y get
-2) Implementar parámetros por default en el constructor léxico. Investigar cómo implementar un constructor 
+    1  Implementar set y get para la clase token
+    2. Implementar parametros default en el constructor de archivo lexico
+    3. Implementar linea y columna en los errores semanticos
+    4. implementar maximo tipo en la asignacion, es decir, cuando se haga v.setvalor(r)
+    5. Aplicar el casteo en el stack, si hubo casteo se hace pop se calcula el residuo de la division (*)
+
+    1) En la clase token, implementar set y get
+    2) Implementar parámetros por default en el constructor léxico. Investigar cómo implementar un constructor 
     que haga lo mismo que los dos. Investigar parámetros por default
 
 */
@@ -117,6 +123,7 @@ namespace Semantica
             }
             l.Add(new Variable(t, getContenido()));
             Variable v= new Variable(t,getContenido());
+            
             l.Add(v);
             match(Tipos.Identificador);
             if (getContenido() == "=")
@@ -276,7 +283,7 @@ namespace Semantica
                 match("+=");
                 Expresion();
                 r = v.getValor() + s.Pop();
-                v.setValor(r);
+                v.setValor(r,maximoTipo,v.GetTipoDato());
             }
             else if (getContenido() == "-=")
             {
@@ -290,21 +297,21 @@ namespace Semantica
                 match("*=");
                 Expresion();
                 r = v.getValor() * s.Pop();
-                v.setValor(r);
+                v.setValor(r,maximoTipo,v.GetTipoDato()); //
             }
             else if (getContenido() == "/=")
             {
                 match("/=");
                 Expresion();
                 r = v.getValor() / s.Pop();
-                v.setValor(r);
+                v.setValor(r,maximoTipo,v.GetTipoDato());
             }
             else if (getContenido() == "%=")
             {
                 match("%=");
                 Expresion();
                 r = v.getValor() % s.Pop();
-                v.setValor(r);
+                v.setValor(r,maximoTipo,v.GetTipoDato());
             }
             //displayStack();
         }
@@ -595,12 +602,27 @@ namespace Semantica
                     match(Tipos.TipoDato);
                     match(")");
                     match("(");
-                   // huboCasteo= true;
+                    huboCasteo= true;
                 }
                 Expresion();
                 if(huboCasteo)
                 {
                     maximoTipo =tipoCasteo;
+                    /*
+                    REQUERIMIENTO 5
+                    
+                    POP
+                    RESIDUO DE LA DIVISION DEPENDIENDO DEL TIPO 
+                    PUSH DEL RESIDUO 
+                    */
+                    if (Variable.valorToTipoDato(float.Parse(getContenido())) == Variable.TipoDato.Int){
+                        s.Push(256 % s.Pop());
+                        
+                    }
+                    else if (Variable.valorToTipoDato(float.Parse(getContenido())) == Variable.TipoDato.Float)
+                    {
+                        s.Push(35536 % s.Pop());
+                    }
                 }
                 match(")");
             }
