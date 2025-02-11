@@ -18,26 +18,19 @@ namespace Semantica
         }
         private string contenido;
         private Tipos clasificacion;
+        public string Contenido{
+            get => contenido;
+            set => contenido = value;
+        }
+        public   Tipos Clasificacion{
+            get => clasificacion; 
+            set => clasificacion = value;
+        }
         public Token()
         {
             contenido = "";
             clasificacion = Tipos.Identificador;
         }
-        public void setContenido(string contenido)
-        {
-            this.contenido = contenido;
-        }
-        public void setClasificacion(Tipos clasificacion)
-        {
-            this.clasificacion = clasificacion;
-        }
-        public string getContenido()
-        {
-            return this.contenido;
-        }
-        public Tipos getClasificacion()
-        {
-            return this.clasificacion;
-        }
+        
     }
 }

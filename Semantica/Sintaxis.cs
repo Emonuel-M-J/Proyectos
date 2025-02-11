@@ -17,18 +17,18 @@ namespace Semantica
         }
         public void match(string contenido)
         {
-            if (contenido == getContenido())
+            if (contenido == Contenido)
             {
                 nextToken();
             }
             else
             {
-                throw new Error("Sintaxis. Se espera un " + contenido, log, linea, columna);
+                throw new Error("Sintaxis. Se jkkkkkkkkkkkkkkkkkkkespera un " + contenido, log, linea, columna);
             }
         }
         public void match(Tipos clasificacion)
         {
-            if (clasificacion == getClasificacion())
+            if (clasificacion == Clasificacion)
             {
                 nextToken();
             }

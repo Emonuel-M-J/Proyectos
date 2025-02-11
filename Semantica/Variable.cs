@@ -38,18 +38,13 @@ namespace Semantica
         }
         public void setValor(float valor, Variable.TipoDato maximoTipo,TipoDato tipo){
             //Validar
-            if( maximoTipo < tipo){
-                throw new Error("Semantico. No se puede almacenar un "+ tipo + " en una variable de tipo "+ maximoTipo + " en la variable" + nombre);
-            }
-            if ( valorToTipoDato(valor) <= tipo)
+            if( valorToTipoDato(valor) > tipo)
             {
-                this.valor = valor;
-               
+                this.valor = valor; 
             }
-            
             else 
             {
-                throw new Error("Semantico. No se puede asignar un float a un "+  valorToTipoDato(valor) + " a un " + tipo + "en la variable" + nombre);
+                throw new Error("Semantico. No es posible asignar  un "+ valorToTipoDato(valor) + "a un " + tipo);
             }
             
             
