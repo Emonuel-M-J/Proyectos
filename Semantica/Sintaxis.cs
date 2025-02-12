@@ -23,7 +23,7 @@ namespace Semantica
             }
             else
             {
-                throw new Error("Sintaxis. Se jkkkkkkkkkkkkkkkkkkkespera un " + contenido, log, linea, columna);
+                throw new Error("Sintaxis. Se espera un " + contenido, log, linea, columna);
             }
         }
         public void match(Tipos clasificacion)

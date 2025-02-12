@@ -36,17 +36,20 @@ namespace Semantica
             
             
         }
-        public void setValor(float valor, Variable.TipoDato maximoTipo,TipoDato tipo){
+        public void setValor(float valor, Variable.TipoDato maximoTipo){
             //Validar
-            if( valorToTipoDato(valor) > tipo)
+            if( maximoTipo > tipo){
+                throw new Error("Semantico. No se puede almacenar un: "+ tipo + " en una variable de tipo:  "+ maximoTipo + " en la variable: " + nombre + " en la linea: "+Lexico.linea + " en la columna: "+ Lexico.columna);
+            }
+            
+            if( valorToTipoDato(valor) <= tipo)
             {
                 this.valor = valor; 
             }
             else 
             {
-                throw new Error("Semantico. No es posible asignar  un "+ valorToTipoDato(valor) + "a un " + tipo);
+                throw new Error("Semantico. No es posible asignar  un "+ valorToTipoDato(valor) + "a un " + tipo + " en la linea: "+Lexico.linea + " en la columna: "+ Lexico.columna);
             }
-            
             
         }
         public static TipoDato valorToTipoDato(float valor)
@@ -55,12 +58,12 @@ namespace Semantica
             {
                 return TipoDato.Float;
             }
-            if(valor <= 255)
+            else if(valor <= 255)
             {
                 return TipoDato.Char;
 
             }
-            else if(valor <= (65535))
+            else if(valor <= 65535)
             {
                 return TipoDato.Int;
             }

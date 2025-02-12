@@ -8,10 +8,7 @@
     4. implementar maximo tipo en la asignacion, es decir, cuando se haga v.setvalor(r)
     5. Aplicar el casteo en el stack, si hubo casteo se hace pop se calcula el residuo de la division (*)
 
-    1) En la clase token, implementar set y get
-    2) Implementar parámetros por default en el constructor léxico. Investigar cómo implementar un constructor 
-    que haga lo mismo que los dos. Investigar parámetros por default
-
+   
 */
 
 using System;
@@ -117,17 +114,21 @@ namespace Semantica
         //ListaIdentificadores -> identificador (= Expresion)? (,ListaIdentificadores)?
         private void ListaIdentificadores(Variable.TipoDato t)
         {
+            
+
             if (l.Find(variable => variable.getNombre() == Contenido) != null)
             {
                 throw new Error($"La variable {Contenido} ya existe", log, linea, columna);
             }
-            l.Add(new Variable(t, Contenido));
-            Variable v= new Variable(t,Contenido);
-            
+
+            Variable v = new Variable(t, Contenido);
             l.Add(v);
+
             match(Tipos.Identificador);
+            
             if (Contenido == "=")
             {
+                
                 match("=");
                 if (Contenido == "Console")
                 {
@@ -138,7 +139,7 @@ namespace Semantica
                         match("Read");
                         // sobrecarga
                         int r = Console.Read();
-                        l.Last().setValor(r,maximoTipo,v.GetTipoDato()); // Asignamos el último valor leído a la última variable detectada
+                        v.setValor(r); // Asignamos el último valor leído a la última variable detectada
                     }
                     else
                     {
@@ -147,7 +148,7 @@ namespace Semantica
                         if (float.TryParse(r, out float valor))
                         {
                             // sobrecarga
-                            l.Last().setValor(valor,maximoTipo,v.GetTipoDato());
+                            v.setValor(valor);
                         }
                         else
                         {
@@ -159,11 +160,12 @@ namespace Semantica
                 }
                 else
                 {
+                    
                     // Como no se ingresó un número desde el Console, entonces viene de una expresión matemática
                     Expresion();
                     float resultado = s.Pop();
                     // sobrecarga
-                    l.Last().setValor(resultado,maximoTipo,v.GetTipoDato());
+                    v.setValor(resultado);
                 }
             }
             if (Contenido == ",")
@@ -267,18 +269,20 @@ namespace Semantica
             else if (Contenido == "=")
             {
                 match("=");
+
                 if (Contenido == "Console")
                 {
                     ListaIdentificadores(v.GetTipoDato()); // Ya se hace este procedimiento arriba así que simplemente obtenemos a través del método lo que necesitamos
                 }
                 else
                 {
-                    Console.WriteLine("Antes: " + maximoTipo);
+                    
                     Expresion();
                     Console.WriteLine("Despues: " + maximoTipo);
                     r = s.Pop();
                     // Requerimiento 4
-                    v.setValor(r);
+                    Console.WriteLine("Despues: " + maximoTipo);
+                    v.setValor(r,maximoTipo);
                 }
             }
             else if (Contenido == "+=")
@@ -513,6 +517,7 @@ namespace Semantica
         // Expresion -> Termino MasTermino
         private void Expresion()
         {
+          
             Termino();
             MasTermino();
         }
@@ -562,19 +567,22 @@ namespace Semantica
         //Factor -> numero | identificador | (Expresion)
         private void Factor()
         {
+            
             if (Clasificacion == Tipos.Numero)
             {
+                
                 Variable.valorToTipoDato(float.Parse(Contenido));
                 if (maximoTipo < Variable.valorToTipoDato(float.Parse(Contenido)))
                 {
                     maximoTipo = Variable.valorToTipoDato(float.Parse(Contenido));
                 }
                 s.Push(float.Parse(Contenido));
-                //Console.Write(Contenido + " ");
+                
                 match(Tipos.Numero);
             }
             else if (Clasificacion == Tipos.Identificador)
             {
+                
                 Variable? v = l.Find(variable => variable.getNombre() == Contenido);
                 if (v == null)
                 {
@@ -585,47 +593,48 @@ namespace Semantica
                     maximoTipo = v.GetTipoDato();
                 }
                 s.Push(v.getValor());
-                //Console.Write(Contenido + " ");
                 match(Tipos.Identificador);
             }
             else
             {
+               
                 match("(");
                 Variable.TipoDato tipoCasteo = Variable.TipoDato.Char;
                 bool huboCasteo = false;
                 
                 if (Clasificacion == Tipos.TipoDato)
                 {
+                    
                     switch(Contenido)
                     {
+
                         case "int": tipoCasteo =Variable.TipoDato.Int; break;
                         case "float": tipoCasteo =Variable.TipoDato.Float; break;
 
                     }
+                    
                     match(Tipos.TipoDato);
                     match(")");
                     match("(");
                     huboCasteo= true;
+                    
                 }
                 Expresion();
+                 
+                
                 if(huboCasteo)
                 {
                     maximoTipo =tipoCasteo;
-                    /*
-                    REQUERIMIENTO 5
+                    Console.WriteLine(Contenido);
+                    if (maximoTipo == Variable.TipoDato.Int)
+                        {
+                            s.Push(s.Pop() % 256);
+                        }
+                        else if (maximoTipo == Variable.TipoDato.Float)
+                        {
+                            s.Push(s.Pop() % 35536);
+                        }
                     
-                    POP
-                    RESIDUO DE LA DIVISION DEPENDIENDO DEL TIPO 
-                    PUSH DEL RESIDUO 
-                    */
-                    if (Variable.valorToTipoDato(float.Parse(Contenido)) == Variable.TipoDato.Int){
-                        s.Push(256 % s.Pop());
-                        
-                    }
-                    else if (Variable.valorToTipoDato(float.Parse(Contenido)) == Variable.TipoDato.Float)
-                    {
-                        s.Push(35536 % s.Pop());
-                    }
                 }
                 match(")");
             }

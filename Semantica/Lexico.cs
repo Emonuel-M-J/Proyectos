@@ -17,10 +17,10 @@ namespace Semantica
         public StreamReader archivo;
         public StreamWriter log;
         public StreamWriter asm;
-        public int linea = 1;
+        public static int linea = 1;
         const int F = -1;
         const int E = -2;
-        public int columna = 1;
+        public static int columna = 1;
         
 readonly int[,] TRAND = {
                 {  0,  1,  2, 33,  1, 12, 14,  8,  9, 10, 11, 23, 16, 16, 18, 20, 21, 26, 25, 27, 29, 32, 34,  0,  F, 33  },
@@ -78,7 +78,7 @@ readonly int[,] TRAND = {
             }
         }
 
-        public Lexico(string nombreArchivo)
+        public Lexico(string nombreArchivo = "prueba.cpp")
         {
 
             string nombreArchivoWithoutExt = Path.GetFileNameWithoutExtension(nombreArchivo);   /* Obtenemos el nombre del archivo sin la extensión para poder crear el .log y .asm */
@@ -226,43 +226,32 @@ readonly int[,] TRAND = {
         {
             switch (estado)
             {
-                case 1: Clasificacion =Tipos.Identificador; break;
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                case 6:
-                case 9: Clasificacion= Tipos.InicioBloque; break;
-                case 7: Clasificacion= Tipos.Numero; break;
-                case 8: Clasificacion=Tipos.FinSentencia; break;
-                case 10: Clasificacion= Tipos.FinBloque; break;
-                case 11: Clasificacion=Tipos.OperadorTernario; break;
-                case 12: Clasificacion= Tipos.OperadorTermino; break;
-                case 13: Clasificacion=Tipos.IncrementoTermino; break;
-                case 14: Clasificacion=Tipos.OperadorTermino; break;
-                case 15: Clasificacion=Tipos.Puntero; break;
-                case 16: Clasificacion=Tipos.OperadorFactor; break;
-                case 17: Clasificacion=Tipos.IncrementoFactor; break;
-                case 18: Clasificacion=Tipos.Caracter; break;
-                case 19: Clasificacion=Tipos.OperadorLogico; break;
-                case 20: Clasificacion=Tipos.Caracter; break;
-                case 21: Clasificacion=Tipos.OperadorLogico; break;
-                case 22: Clasificacion=Tipos.OperadorRelacional; break;
-                case 23: Clasificacion=Tipos.Asignacion; break;
+                case 1: Clasificacion = Tipos.Identificador; break;
+                case 2: Clasificacion = Tipos.Numero; break;
+                case 8: Clasificacion = Tipos.FinSentencia; break;
+                case 9: Clasificacion = Tipos.InicioBloque; break;
+                case 10: Clasificacion = Tipos.FinBloque; break;
+                case 11: Clasificacion = Tipos.OperadorTernario; break;
+                case 12:
+                case 14: Clasificacion = Tipos.OperadorTermino; break;
+                case 13: Clasificacion = Tipos.IncrementoTermino; break;
+                case 15: Clasificacion = Tipos.Puntero; break;
+                case 16:
+                case 34: Clasificacion = Tipos.OperadorFactor; break;
+                case 17: Clasificacion = Tipos.IncrementoFactor; break;
+                case 18:
+                case 20:
+                case 29:
+                case 32:
+                case 33: Clasificacion = Tipos.Caracter; break;
+                case 19:
+                case 21: Clasificacion = Tipos.OperadorLogico; break;
+                case 22:
                 case 24:
                 case 25:
-                case 26: Clasificacion=Tipos.OperadorRelacional; break;
-                case 27:
-                case 28: Clasificacion=Tipos.Cadena; break;
-                case 29:
-                case 30:
-                case 31:
-                case 32:
-                case 33: Clasificacion=Tipos.Caracter; break;
-                case 34:
-                case 35:
-                case 36:
-                case 37: Clasificacion=Tipos.OperadorFactor; break;
+                case 26: Clasificacion = Tipos.OperadorRelacional; break;
+                case 23: Clasificacion = Tipos.Asignacion; break;
+                case 27: Clasificacion = Tipos.Cadena; break;
             }
         }
         public void nextToken()
