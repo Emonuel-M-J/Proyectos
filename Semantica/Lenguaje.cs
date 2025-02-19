@@ -625,7 +625,7 @@ namespace Semantica
                 if(huboCasteo)
                 {
                     maximoTipo =tipoCasteo;
-                    Console.WriteLine(Contenido);
+                   // Console.WriteLine(Contenido);
                     if (maximoTipo == Variable.TipoDato.Int)
                         {
                             s.Push(s.Pop() % 256);
